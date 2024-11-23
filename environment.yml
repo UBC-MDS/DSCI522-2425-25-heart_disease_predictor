@@ -12,3 +12,4 @@ dependencies:
   - scikit-learn
   - requests>=2.24.0
   - seaborn
+  - ucimlrepo
