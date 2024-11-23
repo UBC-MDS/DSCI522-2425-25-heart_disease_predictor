@@ -1,0 +1,15 @@
+name: 'heart_disease_522'
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.11,<3.13
+  - pip
+  - ipykernel
+  - nb_conda_kernels
+  - scipy
+  - matplotlib>=3.2.2
+  - scikit-learn
+  - requests>=2.24.0
+  - seaborn
+  - ucimlrepo
