@@ -1,10 +1,10 @@
 # DSCI522-2425-25-heart_disease_predictor
 
-- author: Anna Nandar, Brian Chang, Celine Habashy, Yeji Sohn
+Authors: Anna Nandar, Brian Chang, Celine Habashy, Yeji Sohn
 
 ## About
 
-We build models using decision tree and logisitc regression algoirthm to predict the prescence of heart disease based on other health features. Our model performed well on an unseen data set, with F1 score of 0.834 and overall accuracy of 0.841. We found that Logistic regression offered better interpretability with high precision and recall. We found that some features had lower importance than anticipated (e.g., fasting blood sugar). We can explore ensemble methods like Random Forest or Gradient Boosting for improved accuracy and consider incorporating additional clinical data for richer insights.
+We built models using decision trees and logistic regression algorithms to predict the presence of heart disease based on health-related features. On an unseen dataset, our models achieved an F1 score of 0.834 and an overall accuracy of 0.841. Logistic regression demonstrated better interpretability, with high precision and recall. Some features, such as fasting blood sugar, showed lower importance than anticipated. Moving forward, we plan to explore ensemble methods like Random Forest and Gradient Boosting to improve accuracy and consider incorporating additional clinical data for deeper insights.
 
 
 The data set that was used in this project is from Cleveland database. It was sourced from the UCI Machine
@@ -13,14 +13,14 @@ Learning Repository (R. Detrano, et al. 1989) and can be found
 
 ## Report
 
-The final report can be found
-[here](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor).
+The final report can be found rendered in HTML
+[here](https://ubc-mds.github.io/DSCI522-2425-25-heart_disease_predictor/).
 
 ## Dependencies
 
 [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is
 used to manage the software dependencies for this project.
-Additional dependencies are specified int the [`yml`](environment.yml).
+All dependencies are specified int the [`yml`](environment.yml).
 
 Dependencies:
   - python>=3.11,<3.13
@@ -42,14 +42,17 @@ Follow the instructions below to reproduce the analysis.
 
 1. Clone this GitHub repository.
 
-2. [Install](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor) 
-and environment.yml
+2. Navigate to the repo folder in your IDE
+
+3. Run `conda env create --file environment.yml` to create the heart_disease_522 kernel needed
 
 #### Running the analysis
 
-1. Run heart_disease_predictor_report on heart_disease_522 kernel. 
+1. Run heart_disease_predictor_report using the heart_disease_522 kernel. 
 
 ## Developer notes
+
+N/A
 
 ### Adding a new dependency
 
@@ -62,11 +65,12 @@ and environment.yml
 4. Send a pull request to merge the changes into the `main` branch. 
 
 ### Running the tests
+
 N/A
 
 ## License
 
-[`MIT License`](LICENSE.md)
+This project was created with the [`MIT License`](LICENSE.md)
 
 ## References
 
