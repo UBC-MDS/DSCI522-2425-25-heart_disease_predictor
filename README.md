@@ -16,6 +16,22 @@ Learning Repository (R. Detrano, et al. 1989) and can be found
 The final report can be found rendered in HTML
 [here](https://ubc-mds.github.io/DSCI522-2425-25-heart_disease_predictor/).
 
+## Usage
+
+Follow the instructions below to reproduce the analysis.
+
+#### Setup
+
+1. Clone this GitHub repository. `git clone https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor.git`
+
+2. Navigate to the repo folder in your IDE
+
+3. Run `conda env create --file environment.yml` to create the heart_disease_522 kernel needed
+
+#### Running the analysis
+
+1. Run heart_disease_predictor_report using the heart_disease_522 kernel. 
+
 ## Dependencies
 
 [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is
@@ -33,27 +49,6 @@ Dependencies:
   - requests>=2.24.0
   - seaborn
 
-
-## Usage
-
-Follow the instructions below to reproduce the analysis.
-
-#### Setup
-
-1. Clone this GitHub repository.
-
-2. Navigate to the repo folder in your IDE
-
-3. Run `conda env create --file environment.yml` to create the heart_disease_522 kernel needed
-
-#### Running the analysis
-
-1. Run heart_disease_predictor_report using the heart_disease_522 kernel. 
-
-## Developer notes
-
-N/A
-
 ### Adding a new dependency
 
 1. Add the dependency to the `environment.yml` file on a new branch.
@@ -63,10 +58,6 @@ N/A
 3. Push the changes to GitHub.
 
 4. Send a pull request to merge the changes into the `main` branch. 
-
-### Running the tests
-
-N/A
 
 ## License
 
