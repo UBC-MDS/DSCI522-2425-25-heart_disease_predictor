@@ -62,9 +62,7 @@ and environment.yml
 4. Send a pull request to merge the changes into the `main` branch. 
 
 ### Running the tests
-Tests are run using the `pytest` command in the root of the project.
-More details about the test suite can be found in the 
-[`tests`](tests) directory.
+N/A
 
 ## License
 
