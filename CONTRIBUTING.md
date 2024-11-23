@@ -23,4 +23,4 @@ Before submitting a pull request (PR), it’s important to first file an issue t
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ### Attribution
-These contributing guidelines were adapted from the [dplyr contributing guidelines](https://github.com/tidyverse/dplyr/blob/master/.github/CONTRIBUTING.md).
+These contributing guidelines were adapted from the [breast-cancer-predictor CONTRIBUTING.md](https://github.com/ttimbers/breast-cancer-predictor/blob/0.0.1/CONTRIBUTING.md), which itself was adapted from the [dplyr contributing guidelines](https://github.com/tidyverse/dplyr/blob/master/.github/CONTRIBUTING.md).
