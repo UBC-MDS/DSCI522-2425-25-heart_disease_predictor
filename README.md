@@ -28,6 +28,16 @@ Follow the instructions below to reproduce the analysis.
 
 3. Run `conda env create --file environment.yml` to create the heart_disease_522 kernel needed
 
+4. Or if you have conda-lock installed, run `conda-lock install --name heart_disease_522 conda-lock.yml`
+
+5. *Note*: If you have an issue installing the environment, please make sure to have conda-lock and mamba installed:
+
+
+    `conda install -c conda-forge conda-lock`
+
+
+    `conda install -c conda-forge mamba`
+
 #### Running the analysis
 
 1. Run heart_disease_predictor_report using the heart_disease_522 kernel. 
