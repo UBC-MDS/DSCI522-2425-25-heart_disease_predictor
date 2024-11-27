@@ -29,13 +29,18 @@ Follow the instructions below to reproduce the analysis.
 #### Running the analysis
 
 1. At the root of the project in a terminal, enter
-    ```docker compose up```
-2. In the terminal, navigate to a URL the docker compose logs that start with the `http://127.0.0.1:8888/lab?token=`
+    ```docker-compose up```
+2. In the terminal, navigate to the URL in the docker compose logs that start with the `http://127.0.0.1:PORT_NUMBER/lab?token=`
+
+*NOTE*: You will need to replace the port number with PORT 34651 to navigate to the proper port inside docker
+
+*NOTE 2*: If you are taken to an authentication screen, please take the token from the logs from where you saw `http://127.0.0.1:PORT_NUMBER/lab?token=...token..is..here...`, and paste it into the login screen's login with token
+
 3. In the new JupyterLab, open the heart_disease_predictor_report inside the report folder
 4. Click on "Restart Kernel and Run All Cells..." under the "Kernel" menu at the top
 
 #### Clean up
-1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker compose rm`
+1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker-compose rm`
 
 ## Dependencies
 
