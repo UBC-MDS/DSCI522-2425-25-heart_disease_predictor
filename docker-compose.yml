@@ -2,7 +2,7 @@ services:
   analysis-env:
     image: bchangs821/dsci522-2425-25-heart_disease_predictor:latest
     ports:
-      - "8888:8888"
+      - "34651:8888"
     volumes:
       - "${PWD}:/app"
     working_dir: /app
