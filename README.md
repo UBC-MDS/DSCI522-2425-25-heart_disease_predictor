@@ -6,7 +6,7 @@ Authors: Anna Nandar, Brian Chang, Celine Habashy, Yeji Sohn
 
 We built models using decision trees and logistic regression algorithms to predict the presence of heart disease based on health-related features. On an unseen dataset, our models achieved an F1 score of 0.834 and an overall accuracy of 0.841. Logistic regression demonstrated better interpretability, with high precision and recall. Some features, such as fasting blood sugar, showed lower importance than anticipated. Moving forward, we plan to explore ensemble methods like Random Forest and Gradient Boosting to improve accuracy and consider incorporating additional clinical data for deeper insights.
 
-
+https://github.com/ttimbers/breast-cancer-predictor/tree/1.0.0
 The data set that was used in this project is from Cleveland database. It was sourced from the UCI Machine
 Learning Repository (R. Detrano, et al. 1989) and can be found
 [here](https://archive.ics.uci.edu/dataset/45/heart+disease). This dataset includes features such as age, chest pain type, blood pressure, cholesterol, and more, alongside a binary diagnosis label (presence or absence of heart disease). 
@@ -24,50 +24,58 @@ Follow the instructions below to reproduce the analysis.
 
 1. Clone this GitHub repository. `git clone https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor.git`
 
-2. Navigate to the repo folder in your IDE
-
-3. Run `conda env create --file environment.yml` to create the heart_disease_522 kernel needed
-
-4. Or if you have conda-lock installed, run `conda-lock install --name heart_disease_522 conda-lock.yml`
-
-5. *Note*: If you have an issue installing the environment, please make sure to have conda-lock and mamba installed:
-
-
-    `conda install -c conda-forge conda-lock`
-
-
-    `conda install -c conda-forge mamba`
+2. Navigate to root of the project folder in your IDE where you have cloned it.
 
 #### Running the analysis
 
-1. Run heart_disease_predictor_report using the heart_disease_522 kernel. 
+1. At the root of the project in a terminal, enter
+    ```docker compose up```
+2. In the terminal, navigate to a URL the docker compose logs that start with the `http://127.0.0.1:8888/lab?token=`
+3. In the new JupyterLab, open the heart_disease_predictor_report inside the report folder
+4. Click on "Restart Kernel and Run All Cells..." under the "Kernel" menu at the top
+
+#### Clean up
+1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker compose rm`
 
 ## Dependencies
 
-[Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is
-used to manage the software dependencies for this project.
+[Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is used to manage the software dependencies for this project.
 All dependencies are specified int the [`yml`](environment.yml).
 
 Dependencies:
-  - python>=3.11,<3.13
-  - pip
-  - ipykernel
-  - nb_conda_kernels
-  - scipy
+  - python=3.11
+  - pip=24.3.1
+  - ipykernel=6.29.5
+  - nb_conda_kernels=2.5.1
+  - scipy=1.14.1
   - matplotlib>=3.2.2
-  - scikit-learn
+  - scikit-learn=1.5.2
   - requests>=2.24.0
-  - seaborn
+  - seaborn=0.13.2
+  - ucimlrepo=0.0.7
+  - pandera=0.20.2
 
+## Developer Notes
+### Developer Dependencies
+1. `conda` (version 24.11.0 or higher)
+2. `conda-lock` (version 2.5.7 or higher)
 ### Adding a new dependency
 
 1. Add the dependency to the `environment.yml` file on a new branch.
 
-2. Update the `environment.yml` file on your branch.
+2. Run `conda-lock -k explicit --file environment.yml -p linux-64` to update the `conda-linux-64.lock` file
 
-3. Push the changes to GitHub.
+3. Re-build the Docker image locally to ensure it still runs.
 
-4. Send a pull request to merge the changes into the `main` branch. 
+4. Test the container locally by running it and ensuring your new dependencies are working
+
+5. Push the changes to GitHub.
+
+6. Update your local docker-compose.yml file on your branch to use the new container image (line 3 in the docker-compose.yml file where it starts with "image:..."
+
+*Note: Right now it will always use the latest Docker Image anyways so for Milestone 2 Step 6 is not needed*
+
+7. Send a pull request to merge the changes into the `main` branch. 
 
 ## License
 

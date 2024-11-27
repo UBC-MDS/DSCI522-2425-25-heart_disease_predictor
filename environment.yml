@@ -4,12 +4,13 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - pip
-  - ipykernel
-  - nb_conda_kernels
-  - scipy
+  - pip=24.3.1
+  - ipykernel=6.29.5
+  - nb_conda_kernels=2.5.1
+  - scipy=1.14.1
   - matplotlib>=3.2.2
-  - scikit-learn
+  - scikit-learn=1.5.2
   - requests>=2.24.0
-  - seaborn
-  - ucimlrepo
+  - seaborn=0.13.2
+  - ucimlrepo=0.0.7
+  - pandera=0.20.2
