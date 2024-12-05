@@ -15,5 +15,6 @@ dependencies:
   - seaborn=0.13.2
   - ucimlrepo=0.0.7
   - pandera=0.20.2
+  - quarto=1.5.57
   - pip:
       - deepchecks==0.18.1
