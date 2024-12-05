@@ -8,24 +8,28 @@ import pandas as pd
 
 @click.command()
 @click.option('--raw-data', type=str, help="Path to raw data")
-@click.option('--data-to', type=str, help="Path to directory where processed data will be written to")
+@click.option('--write-to', type=str, help="Path to directory where processed data will be written to")
 
-def main(raw_data, data_to):
+def main(raw_data, write_to):
     """
     Processes the raw heart disease dataset, renaming columns, relabeling categorical values, 
     and cleaning the data (e.g., dropping missing values).
 
     Parameters:
     raw_data (str): Path to the raw data CSV file.
-    data_to (str): Directory where the processed data will be saved.
+    write_to (str): Directory where the processed data will be saved.
 
     Saves the processed dataset as 'processed_heart_disease_data.csv' in the specified directory.
     """
+
+    df = pd.read_csv(raw_data)
+
+    # rename columns
     new_column_names = ["age", "sex", "chest_pain_type", "resting_blood_pressure", "cholesterol", "fasting_blood_sugar", 
                 "rest_ecg", "max_heart_rate", "exercise_induced_angina", "st_depression", "slope", 
                "num_of_vessels", "thalassemia", "diagnosis"]
-
-    df = pd.read_csv(raw_data, names=new_column_names, header=None).drop(columns=['id'])
+    
+    df.columns = new_column_names
 
     # re-label classes
     df.loc[(df['chest_pain_type'] == 1), 'chest_pain_type'] = 'typical angina'
@@ -58,7 +62,11 @@ def main(raw_data, data_to):
     # drop null values
     df = df.dropna()
 
-    df.to_csv(os.path.join(data_to, "processed_heart_disease_data.csv"), index=False)
+    try:
+        df.to_csv(os.path.join(write_to, "processed_heart_disease_data.csv"), index=False)
+    except:
+        os.mkdir(write_to)
+        df.to_csv(os.path.join(write_to, "processed_heart_disease_data.csv"), index=False)
 
 
 if __name__ == '__main__':
