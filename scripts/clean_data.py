@@ -63,10 +63,10 @@ def main(raw_data, write_to):
     df = df.dropna()
 
     try:
-        df.to_csv(os.path.join(write_to, "processed_heart_disease_data.csv"), index=False)
+        df.to_csv(os.path.join(write_to, "cleaned_heart_disease_data.csv"), index=False)
     except:
         os.mkdir(write_to)
-        df.to_csv(os.path.join(write_to, "processed_heart_disease_data.csv"), index=False)
+        df.to_csv(os.path.join(write_to, "cleaned_heart_disease_data.csv"), index=False)
 
 
 if __name__ == '__main__':

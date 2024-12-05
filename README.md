@@ -36,8 +36,17 @@ Follow the instructions below to reproduce the analysis.
 
 *NOTE 2*: If you are taken to an authentication screen, please take the token from the logs from where you saw `http://127.0.0.1:PORT_NUMBER/lab?token=...token..is..here...`, and paste it into the login screen's login with token
 
-3. In the new JupyterLab, open the heart_disease_predictor_report inside the report folder
-4. Click on "Restart Kernel and Run All Cells..." under the "Kernel" menu at the top
+3. To run the analysis,
+open a terminal (in the docker jupyter lab) and run the following commands:
+
+```
+python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
+
+python scripts/clean_data.py --raw-data="data/raw/raw_heart_disease_data.csv" --write-to="data/cleaned/"
+
+quarto render reports/qmd_example.qmd --to html
+quarto render reports/qmd_example.qmd --to pdf
+```
 
 #### Clean up
 1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker-compose rm`
