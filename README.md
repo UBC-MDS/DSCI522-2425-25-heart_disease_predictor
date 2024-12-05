@@ -43,9 +43,6 @@ open a terminal (in the docker jupyter lab) and run the following commands:
 python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
 
 python scripts/clean_data.py --raw-data="data/raw/raw_heart_disease_data.csv" --write-to="data/cleaned/"
-
-quarto render reports/qmd_example.qmd --to html
-quarto render reports/qmd_example.qmd --to pdf
 ```
 
 #### Clean up
