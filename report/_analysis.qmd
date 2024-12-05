@@ -1,0 +1,140 @@
+# Classification Analysis
+
+## Decision Tree Classifier
+
+```{python}
+# Create a pipeline with the preprocessor and a Decision Tree Classifier
+
+decision_tree = make_pipeline(preprocessor, DecisionTreeClassifier(random_state = 123))
+
+decision_tree_cv = cross_validate(decision_tree, X_train, y_train, scoring=scoring, cv=5, return_train_score=True)
+
+decision_tree_cv_results = pd.DataFrame(decision_tree_cv).agg(['mean', 'std']).round(3).T
+
+# Display the results
+decision_tree_cv_results
+```
+
+```{python}
+# Fitting the model
+
+decision_tree.fit(X_train, y_train)
+
+decision_tree_result = decision_tree.predict(X_test)
+```
+
+```{python}
+# Confusion Matrix for the model
+
+confusion_matrix(y_test,decision_tree_result)
+```
+
+## Decision Tree Model's Results
+
+```{python}
+# Build Classification Report for Decision Tree Model
+
+decision_tree_report = classification_report(y_test, decision_tree_result, output_dict=True)
+
+decision_tree_report_df = pd.DataFrame(decision_tree_report).transpose()
+
+decision_tree_report_filtered = decision_tree_report_df.loc[['0', '1', 'accuracy'], ['precision', 'recall', 'f1-score']]
+
+decision_tree_report_filtered
+```
+
+## Logistic Regression
+
+```{python}
+# Create a pipeline with the preprocessor and a Logistic Regression Model
+
+cross_val_results = {}
+
+logreg = make_pipeline(preprocessor, LogisticRegression(random_state = 123, max_iter = 1000))
+
+cross_val_results['logreg'] = pd.DataFrame(cross_validate(logreg, X_train, y_train, scoring = scoring, return_train_score = True)).agg(['mean', 'std']).round(3).T
+
+cross_val_results['logreg'] 
+```
+
+```{python}
+# Confusion Matrix of Logistic Regression Model
+
+confmat_logreg = ConfusionMatrixDisplay.from_predictions(
+    y_train,  # true class labels
+    cross_val_predict(logreg, X_train, y_train),  # predicted class labels
+)
+```
+
+```{python}
+# Fit the Logistic Regression Model
+
+logreg.fit(X_train, y_train)
+```
+
+## Logistic Regression's Coefficients
+
+```{python}
+logreg_model = logreg.named_steps['logisticregression']
+```
+
+```{python}
+# Extract the features after the column transformer
+
+feature_names = logreg.named_steps['columntransformer'].get_feature_names_out()
+
+coefficients = pd.DataFrame(logreg_model.coef_.ravel(), index=feature_names, columns=['Coefficient'])
+
+coefficients.sort_values(by='Coefficient', inplace=True, ascending=False)
+```
+
+```{python}
+# Extract and Order the features based on coefficient values
+
+coefficients = pd.DataFrame({
+    "Feature": feature_names,  
+    "Coefficient": logreg_model.coef_.ravel()
+})
+
+coefficients = coefficients.sort_values(by="Coefficient", ascending=False)
+
+coefficients.style.background_gradient(cmap="coolwarm", subset=["Coefficient"]).set_caption("Table 1: Logistic Regression Coefficients")
+```
+
+```{python}
+# Plot the figure for Coefficients Values
+
+plt.figure(figsize=(10, 8))
+plt.barh(coefficients["Feature"], coefficients["Coefficient"], color='skyblue')
+plt.title("Figure 4: Logistic Regression Coefficients")
+plt.xlabel("Coefficient Value")
+plt.ylabel("Feature")
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+# Predict the test data using Logistic Regression Model
+
+pred = logreg.predict(X_test)
+```
+
+```{python}
+# Confusion Matrix for Test data
+
+confusion_matrix(y_test,pred)
+```
+
+## Logistic Regressions Model's Results
+
+```{python}
+# Evaluate the results using Logistic Regression Model
+
+loges_report = classification_report(y_test, pred, output_dict=True)
+
+loges_report_df = pd.DataFrame(loges_report).transpose()
+
+loges_report_filtered = loges_report_df.loc[['0', '1', 'accuracy'], ['precision', 'recall', 'f1-score']]
+
+loges_report_filtered
+```

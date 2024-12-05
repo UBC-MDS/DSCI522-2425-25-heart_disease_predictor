@@ -1,0 +1,54 @@
+# Summary
+
+In this projects, we developed a classification system using Logistic Regression and Decision Tree models to predict heart disease diagnosis based on multiple features such as age, blood pressure, cholesterol, and more. The data was sourced from the UCI Heart Disease dataset [@heart_disease_45], and preprocessing involved cleaning, transforming, and encoding categorical variables for analysis. According to our experiments, the logistic regression model achieved the high accuracy 82%. Decision Tree provided competitive results but lacked the interpretability of logistic regression. The results suggest that machine learning models can be used to predict heart disease effectively, aiding healthcare providers in early detection and intervention.
+
+# Introduction
+
+Heart disease is one of the leading causes of death worldwide, and early detection is crucial for improving treatment outcomes and patient survival rates. Timely diagnosis can help healthcare providers make more informed decisions, allocate resources more effectively, and ultimately save lives. Traditional diagnostic methods often involve manual interpretation of clinical test results, which can be time-consuming, subjective, and prone to errors. As health data becomes increasingly available, machine learning has emerged as a powerful tool for diagnosing and predicting diseases, including heart disease.
+
+This project explores the application of machine learning models to classify individuals based on their likelihood of having heart disease using clinical data. Specifically, we use the UCI Heart Disease dataset, which contains medical records of patients, including features such as age, chest pain type, blood pressure, cholesterol levels, and other relevant clinical attributes. The dataset also includes a binary diagnosis label indicating the presence or absence of heart disease, which forms the basis for predictive modeling.
+
+For this analysis, we focus on the Heart Disease dataset, which includes 13 features. These features represent key clinical indicators used to assess cardiovascular health, and the target variable categorically indicates the presence or absence of heart disease. For the purpose of this analysis, we focus on a binary classification problem, where we aim to distinguish between individuals with no heart disease and those with some form of heart disease. Additionally, the dataset has been anonymized to protect patient privacy, with identifiers such as names and social security numbers replaced by anonymous values.
+
+The main questions addressed in this analysis are:
+
+1. What is the overall accuracy of a classification model for heart disease prediction?
+2. Which features are most predictive of the presence of heart disease?
+
+By applying machine learning to this dataset, we aim to demonstrate how predictive modeling can aid in the early diagnosis of heart disease, providing more accurate and timely insights that could improve healthcare outcomes and resource allocation.
+
+## About Data
+
+The dataset used in this project is UCI Heart Disease dataset consisting of 303 patients records [@heart_disease_45]. The dataset is anonymized to protect patient privacy and includes 13 features that provide valuable insights into an individual's health status.
+
+##### Key Features:
+
+1. age: The age of the patient in years.
+2. sex: The gender of the patient (1 = male, 0 = female).
+3. chest_pain_type: Indicates the type of chest pain experienced, categorized as:
+    - 0: Typical angina
+    - 1: Atypical angina
+    - 2: Non-anginal pain
+    - 3: Asymptomatic
+4. resting_blood_pressure: The patient’s resting blood pressure in mmHg.
+5. cholesterol: Serum cholesterol levels in mg/dL.
+6. fasting_blood_sugar: A binary feature indicating if fasting blood sugar is > 120 mg/dL (1 = true, 0 = false).
+7. rest_ecg: Resting electrocardiogram results, coded as:
+    - 0: Normal
+    - 1: Having ST-T wave abnormality
+    - 2: Showing probable or definite left ventricular hypertrophy.
+8. max_heart_rate: Maximum heart rate achieved during exercise.
+9. exercise_induced_angina: A binary feature indicating the presence of exercise-induced angina (1 = yes, 0 = no).
+10. st_depression: ST depression induced by exercise relative to rest.
+11. slope: The slope of the peak exercise ST segment:
+    - 0: Upsloping
+    - 1: Flat
+    - 2: Downsloping.
+12. num_of_vessels: The number of major vessels (0–3) colored by fluoroscopy.
+13. thalassemia: A categorical feature representing a blood disorder:
+    - 0: Normal
+    - 1: Fixed defect
+    - 2: Reversible defect.
+14. diagnosis: The target variable, indicating the presence or absence of heart disease:
+    - 0: No heart disease
+    - 1: Heart disease (aggregated from severity levels 1–4 in the original dataset).

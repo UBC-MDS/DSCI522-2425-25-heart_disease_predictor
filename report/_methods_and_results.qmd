@@ -1,0 +1,90 @@
+# Methods & Results
+
+```{python}
+import pandas as pd
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.compose import ColumnTransformer, make_column_transformer
+from sklearn.preprocessing import (
+    OneHotEncoder,
+    StandardScaler
+)
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_validate
+from sklearn.metrics import make_scorer
+from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import cross_val_predict
+from sklearn.metrics import ConfusionMatrixDisplay 
+import matplotlib.pyplot as plt
+
+from sklearn.metrics import classification_report
+from sklearn.tree import DecisionTreeClassifier
+```
+
+## Feature Encoding and Transformation
+
+```{python}
+#splitting the features 
+
+numeric_features = [
+    "age", 
+    "resting_blood_pressure", 
+    "fasting_blood_sugar", 
+    "cholesterol", 
+    "max_heart_rate", 
+    "st_depression", 
+    "sex"
+]
+categorical_features = [
+    "chest_pain_type", 
+    "rest_ecg", 
+    "exercise_induced_angina", 
+    "slope", 
+    "num_of_vessels", 
+    "thalassemia"
+]
+
+numeric_transformer = StandardScaler()
+categorical_transformer = OneHotEncoder(drop="if_binary", handle_unknown="ignore")
+
+# Create Column transformer
+preprocessor = make_column_transformer(
+    (numeric_transformer, numeric_features),
+    (categorical_transformer, categorical_features)
+)
+
+preprocessor
+```
+
+```{python}
+#Split the train and test dataset
+X = df.drop(columns=["diagnosis"])
+y = df["diagnosis"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
+```
+
+```{python}
+#apply the preprocessing pipeline to transform the train dataset
+preprocessor.verbose_feature_names_out = False
+
+X_train_enc = pd.DataFrame(preprocessor.fit_transform(X_train), columns= preprocessor.get_feature_names_out())
+
+X_train_enc
+```
+
+```{python}
+X_train_enc.columns
+```
+
+```{python}
+scoring = {
+    "accuracy": 'accuracy',
+    'precision': make_scorer(precision_score, pos_label=True),
+    'recall': make_scorer(recall_score, pos_label=True),
+    'f1': make_scorer(f1_score, pos_label=True),
+
+}  
+```
