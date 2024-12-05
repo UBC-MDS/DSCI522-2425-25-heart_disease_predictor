@@ -43,6 +43,8 @@ open a terminal (in the docker jupyter lab) and run the following commands:
 python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
 
 python scripts/clean_data.py --raw-data="data/raw/raw_heart_disease_data.csv" --write-to="data/cleaned/"
+
+python scripts/split_n_proprocess.py --raw-data data/processed/processed_heart_disease_data.csv --data-to="data/processed/" --preprocessor-to=“results/models/“ --seed 42
 ```
 
 #### Clean up
