@@ -62,39 +62,27 @@ def main(raw_data, data_to, preprocessor_to, seed):
     X_train_enc = pd.DataFrame(preprocessor.fit_transform(X_train), columns=preprocessor.get_feature_names_out())
     X_test_enc = pd.DataFrame(preprocessor.transform(X_test), columns=preprocessor.get_feature_names_out())
 
-    scoring = {
-        "accuracy": 'accuracy',
-        "precision": make_scorer(precision_score, pos_label=1),
-        "recall": make_scorer(recall_score, pos_label=1),
-        "f1": make_scorer(f1_score, pos_label=1)
-    }
-
-    model = LogisticRegression(max_iter=1000)
-    model.fit(X_train_enc, y_train)
-
-    y_pred = model.predict(X_test_enc)
-
-   
-    print("Classification Report:")
-    print(classification_report(y_test, y_pred))
-
-    cm = confusion_matrix(y_test, y_pred)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
-    disp.plot(cmap="Blues")
-    plt.title("Confusion Matrix")
-    plt.show()
-
-    try:
-        pickle.dump(model, open(os.path.join(data_to, "model.pickle"), "wb"))
-    except: 
-        os.mkdir(data_to)
-        pickle.dump(model, open(os.path.join(data_to, "model.pickle"), "wb"))
-
     try:
         pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
     except: 
-        os.mkdir(preprocessor_to)
+        os.makedirs(preprocessor_to)
         pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
+
+    try:
+        X_train_enc.to_csv(os.path.join(data_to, "X_train_transformed.csv"), index=False)
+        X_test_enc.to_csv(os.path.join(data_to, "X_test_transformed.csv"), index=False)
+        y_train.to_csv(os.path.join(data_to, "y_train.csv"), index=False)
+        y_test.to_csv(os.path.join(data_to, "y_test.csv"), index=False)
+        X_train.to_csv(os.path.join(data_to, "X_train.csv"), index=False)
+        X_test.to_csv(os.path.join(data_to, "X_test.csv"), index=False)
+    except: 
+        os.makedirs(data_to)
+        X_train_enc.to_csv(os.path.join(data_to, "X_train_transformed.csv"), index=False)
+        X_test_enc.to_csv(os.path.join(data_to, "X_test_transformed.csv"), index=False)
+        y_train.to_csv(os.path.join(data_to, "y_train.csv"), index=False)
+        y_test.to_csv(os.path.join(data_to, "y_test.csv"), index=False)
+        X_train.to_csv(os.path.join(data_to, "X_train.csv"), index=False)
+        X_test.to_csv(os.path.join(data_to, "X_test.csv"), index=False)
     
 
 if __name__ == '__main__':
