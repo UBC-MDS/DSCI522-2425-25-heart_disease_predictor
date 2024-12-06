@@ -1,0 +1,54 @@
+---
+title: Heart Disease Prediction
+author: "Anna Nander, Brian Chang, Celine Habashy, Yeji Sohn"
+format:
+    html:
+        toc: true
+        self-contained: true
+    pdf:
+        toc: true
+        fig-pos: "H"
+# If we want numbered sections, we can uncomment below
+# number-sections: true
+bibliography: references.bib
+execute:
+    echo: false
+---
+<!-- Introduction Sectio -->
+
+{{< include _introduction.qmd >}}
+ 
+<!-- Data Processing Section -->
+
+{{< include _data_processing.qmd >}}
+
+<!-- EDA Section -->
+
+{{< include _eda.qmd >}}
+
+<!-- Methods and Results Section -->
+
+{{< include _methods_and_results.qmd >}}
+
+<!-- Classification Analysis Section -->
+
+{{< include _analysis.qmd >}}
+
+<!-- Discussion Section -->
+
+{{< include _discussion.qmd >}}
+
+# References
+
+Heart disease. UCI Machine Learning Repository. (n.d.). https://archive.ics.uci.edu/dataset/45/heart+disease 
+
+Detrano, R.C., Jánosi, A., Steinbrunn, W., Pfisterer, M.E., Schmid, J., Sandhu, S., Guppy, K., Lee, S., & Froelicher, V. (1989). International application of a new probability algorithm for the diagnosis of coronary artery disease. The American journal of cardiology, 64 5, 304-10 .
+
+Van Rossum, G., & Drake, F. (2009). Python 3 Reference Manual. CreateSpace.
+
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., & Duchesnay, E. (2011). Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12, 2825–2830.
+
+Deshmukh, H. (2020, July 16). Heart disease UCI Diagnosis & Prediction. Medium. https://towardsdatascience.com/heart-disease-uci-diagnosis-prediction-b1943ee835a7 
+
+Fahadrehman. (2024, April 28). Heart disease prediction using 9 models. Kaggle. https://www.kaggle.com/code/fahadrehman07/heart-disease-prediction-using-9-models#Evaluation-of-Models
+
