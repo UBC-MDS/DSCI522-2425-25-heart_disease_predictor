@@ -45,6 +45,10 @@ python scripts/clean_data.py --raw-data="data/raw/raw_heart_disease_data.csv" --
 python scripts/split_n_proprocess.py --raw-data data/processed/processed_heart_disease_data.csv --data-to="data/processed/" --preprocessor-to=“results/models/“ --seed 42
 
 python scripts/eda.py --processed-data data/cleaned/cleaned_heart_disease_data.csv --plot-to results/eda_plot
+
+python scripts/fit_heart_disease_predictor.py --x-train /data/processed/X_train_transformed.csv --y-train /data/processed/y_train.csv --model model_name --output-dir /results/ --random-state 123
+
+python evaluate_heart_disease_predictor.py --x-test ../data/processed/X_test_transformed.csv --y-test ../data/processed/y_test.csv --pipeline-from ../results/models/model_name.pkl --results-to ../results/tables/model_name
 ```
 
 4. To render the PDF and HTML
