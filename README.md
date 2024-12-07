@@ -36,7 +36,7 @@ Follow the instructions below to reproduce the analysis.
 
 *NOTE 2*: If you are taken to an authentication screen, please take the token from the logs from where you saw `http://127.0.0.1:PORT_NUMBER/lab?token=...token..is..here...`, and paste it into the login screen's login with token
 
-3. To run the analysis, open a terminal (in the docker jupyter lab) and run the following commands:
+3. To run the analysis and regenerate the data, open a terminal (in the docker jupyter lab) and run the following commands:
 
 ```
 python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
