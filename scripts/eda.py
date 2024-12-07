@@ -44,17 +44,16 @@ def main(processed_data, plot_to):
         value_name='value'
     )
     df_melted['predictor'] = df_melted['predictor'].str.replace('_', ' ') 
-  # Create the pair plot
     pairplot_data = df[["age", "resting_blood_pressure", "cholesterol", "max_heart_rate", "st_depression", "diagnosis"]]
     pairplot = sns.pairplot(
         pairplot_data,
         hue='diagnosis',
-        diag_kind='kde',  # Use density plots on the diagonal
-        plot_kws={'alpha': 0.7, 's': 50},  # Adjust scatterplot transparency and size
-        diag_kws={'shade': True}  # Add shading to diagonal density plots
+        diag_kind='kde', 
+        plot_kws={'alpha': 0.7, 's': 50}, 
+        diag_kws={'shade': True}  
     )
 
-    # Save the plot to the specified directory
+
     plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.png")
     pairplot.savefig(plot_path)
     plt.close()
