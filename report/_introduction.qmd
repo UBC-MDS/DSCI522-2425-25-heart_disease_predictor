@@ -1,10 +1,27 @@
+```{python}
+import pandas as pd
+lg_model_results = pd.read_csv("../results/tables/logistic_regression/classification_report.csv")
+
+if 'Unnamed: 0' in lg_model_results.columns:
+    lg_model_results = lg_model_results.rename(columns={'Unnamed: 0': ''})
+
+lg_accuracy = round(lg_model_results.loc[lg_model_results[''] == 'accuracy', 'precision'].values[0] * 100, 2)
+
+dst_model_results = pd.read_csv("../results/tables/decision_tree/classification_report.csv")
+
+if 'Unnamed: 0' in dst_model_results.columns:
+    dst_model_results = dst_model_results.rename(columns={'Unnamed: 0': ''})
+
+dt_accuracy = round(dst_model_results.loc[dst_model_results[''] == 'accuracy', 'precision'].values[0] * 100, 2)
+```
+
 # Summary
 
 In this project, we developed a classification system using Logistic Regression and Decision Tree models 
 to predict a **heart disease diagnosis based on multiple features such as age, blood pressure, cholesterol, 
 and more**. For a full explanation of variables please refer to the [Key Features](#key-features) section. The data was sourced from the UCI Heart Disease dataset [@heart_disease_45], and preprocessing
 involved cleaning, transforming, and encoding categorical variables for analysis. According to our experiments, 
-the logistic regression model achieved the highest accuracy with 82%. Decision Tree provided competitive results but lacked 
+the logistic regression model achieved the highest accuracy with `{python} lg_accuracy`%. Decision Tree provided competitive results, with an accuracy of `{python} dt_accuracy`%, but lacked 
 the interpretability of logistic regression. The results suggest that machine learning models have the potential to be used to predict 
 heart disease effectively, aiding healthcare providers in early detection and intervention. However, since this report only contains experiments with Decision Trees and Logistic Regression, further experimentation should be conducted to investigate other, potentially better models.
 
