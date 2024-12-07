@@ -46,9 +46,13 @@ python scripts/split_n_preprocess.py --raw-data data/processed/processed_heart_d
 
 python scripts/eda.py --processed-data data/cleaned/cleaned_heart_disease_data.csv --plot-to results/eda_plot
 
-python scripts/fit_heart_disease_predictor.py --x-train /data/processed/X_train_transformed.csv --y-train /data/processed/y_train.csv --model model_name --output-dir /results/ --random-state 123
+python scripts/fit_heart_disease_predictor.py --x-train /data/processed/X_train_transformed.csv --y-train /data/processed/y_train.csv --model decision_tree --output-dir /results/ --random-state 123
 
-python evaluate_heart_disease_predictor.py --x-test ../data/processed/X_test_transformed.csv --y-test ../data/processed/y_test.csv --pipeline-from ../results/models/model_name.pkl --results-to ../results/tables/model_name
+python scripts/fit_heart_disease_predictor.py --x-train /data/processed/X_train_transformed.csv --y-train /data/processed/y_train.csv --model logistic_regression --output-dir /results/ --random-state 123
+
+python scripts/evaluate_heart_disease_predictor.py --x-test /data/processed/X_test_transformed.csv --y-test /data/processed/y_test.csv --pipeline-from /results/models/decision_tree.pkl --results-to /results/tables/decision_tree
+
+python scripts/evaluate_heart_disease_predictor.py --x-test /data/processed/X_test_transformed.csv --y-test /data/processed/y_test.csv --pipeline-from /results/models/logistic_regression.pkl --results-to /results/tables/logistic_regression
 ```
 
 4. To render the PDF and HTML
