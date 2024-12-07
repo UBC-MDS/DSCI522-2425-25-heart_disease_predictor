@@ -25,7 +25,8 @@ Below is a detailed description of each cleaning task performed:
 | **Exercise Induced Angina**   | 0, 1                          | 'No', 'Yes'                                                  |
 | **Slope**                     | 1, 2, 3                       | 'Upsloping', 'Flat', 'Downsloping'                           |
 | **Thalassemia**               | 3, 6, 7                       | 'Normal', 'Fixed defect', 'Reversible defect'                |
-| **Diagnosis**                 | 2, 3, 4                       | 1 (presence of heart disease)                                |
+| **Diagnosis**                 | 2, 3, 4                       | 1 (presence of heart disease)                                | 
+: Raw Table {#tbl-relabledTable}
 
    
 3. **Handling Missing Values**:
@@ -54,7 +55,7 @@ Below is a detailed description of each cleaning task performed:
    - **Feature-Feature Correlation**: A check was conducted to ensure no pairs of features exhibited 
    highly correlated relationships that could lead to multicollinearity.
 
-   ## Cleaned dataset
+## Cleaned Dataset
    This dataset will be used onwards for all analysis.
 
    | Variable Name            | Role     | Type        | Description                                        | Units          | Missing Values |
@@ -74,7 +75,7 @@ Below is a detailed description of each cleaning task performed:
    | thalassemia              | Feature  | Categorical | Thalassemia: [normal, fixed defect, reversible defect] |                | no             |
    | diagnosis                | Target   | Categorical | Predicted attribute (1 = presence of heart disease, 0 = absence) |                | no             |
 
-   : My Caption {#tbl-cleanedTable}
+   : Cleaned Table {#tbl-cleanedTable}
 
 
 <!-- TODO: Delete Below -->
@@ -105,8 +106,8 @@ y = heart_disease.data.targets
 data = X.copy()
 data['Diagnosis'] = y  
 
-print("Dataset Shape:", data.shape)
-print("Columns:", data.columns)
+# print("Dataset Shape:", data.shape)
+# print("Columns:", data.columns)
 
 # Save the raw 
 
@@ -115,7 +116,7 @@ data.to_csv("../data/raw/raw_heart_disease_data.csv", index=False)
 
 ```{python}
 df = pd.read_csv("../data/raw/raw_heart_disease_data.csv")
-df
+# df
 ```
 
 ```{python}
@@ -129,33 +130,33 @@ new_column_names = ["age", "sex", "chest_pain_type", "resting_blood_pressure", "
 df.columns = new_column_names
 ```
 
-## Checking the unique values for each column
+<!-- ## Checking the unique values for each column -->
 
 ```{python}
-df['num_of_vessels'].unique()
+# df['num_of_vessels'].unique()
 ```
 
 ```{python}
-df['sex'].unique()
+# df['sex'].unique()
 ```
 
 ```{python}
-df['chest_pain_type'].unique()
+# df['chest_pain_type'].unique()
 ```
 
 ```{python}
-df['fasting_blood_sugar'].unique()
+# df['fasting_blood_sugar'].unique()
 ```
 
 ```{python}
-df['rest_ecg'].unique()
+# df['rest_ecg'].unique()
 ```
 
 ```{python}
-df['thalassemia'].unique()
+# df['thalassemia'].unique()
 ```
 
-## Map the values with the provided labels
+<!-- ## Map the values with the provided labels -->
 
 ```{python}
 df.loc[(df['chest_pain_type'] == 1), 'chest_pain_type'] = 'typical angina'
@@ -199,13 +200,13 @@ df.loc[(df['diagnosis'] == 4), 'diagnosis'] = 1
 ```
 
 ```{python}
-df
+# df
 ```
 
-## Checking and removing null values
+<!-- ## Checking and removing null values -->
 
 ```{python}
-df.isnull().sum()
+# df.isnull().sum()
 ```
 
 ```{python}
@@ -213,7 +214,7 @@ df = df.dropna()
 ```
 
 ```{python}
-df.isnull().sum()
+# df.isnull().sum()
 ```
 
 ## Data Validation
@@ -233,7 +234,7 @@ empty_obs_schema = pa.DataFrameSchema(
 # Validate Schema
 try:
     empty_obs_schema.validate(df)
-    print("Validation passed: No empty observations found.")
+    # print("Validation passed: No empty observations found.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -281,7 +282,7 @@ missingness_threshold_schema = pa.DataFrameSchema(
 # Validate Schema
 try:
     missingness_threshold_schema.validate(df)
-    print("Validation passed: No missingness beyond expected threshold.")
+    # print("Validation passed: No missingness beyond expected threshold.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -312,7 +313,7 @@ column_type_schema = pa.DataFrameSchema(
 # Validate Schema
 try:
     column_type_schema.validate(df)
-    print("Validation passed: All columns have correct data types.")
+    # print("Validation passed: All columns have correct data types.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -330,7 +331,7 @@ duplicate_schema = pa.DataFrameSchema(
 # Validate Schema
 try:
     duplicate_schema.validate(df)
-    print("Validation passed: No duplicates found.")
+    # print("Validation passed: No duplicates found.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -352,7 +353,7 @@ numerical_schema = pa.DataFrameSchema(
 # Validate Schema
 try:
     numerical_schema.validate(df)
-    print("Validation passed: No outliers found.")
+    # print("Validation passed: No outliers found.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -393,7 +394,7 @@ map_categorical_schema = pa.DataFrameSchema(
 # checking mapped categorical values
 try:
     map_categorical_schema.validate(df)
-    print("Validation passed: All categorical mappings are correct.")
+    # print("Validation passed: All categorical mappings are correct.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -421,7 +422,7 @@ def check_proportions(series, tolerance=0.1):
     proportions = series.value_counts(normalize=True)
 
     # Print the calculated proportions
-    print("class proportions are", proportions)
+    # print("class proportions are", proportions)
 
     # Check if the proportions of 0 and 1 are within the acceptable tolerance of 0.5
     return np.abs(proportions.get(0, 0) - 0.5) <= tolerance and np.abs(proportions.get(1, 0) - 0.5) <= tolerance
@@ -441,7 +442,7 @@ proportion_check_schema = pa.DataFrameSchema(
 # Try to validate the dataframe using the schema
 try:
     proportion_check_schema.validate(df)
-    print("Validation passed: Class proportions are as expected.")
+    # print("Validation passed: Class proportions are as expected.")
 except pa.errors.SchemaError as e:
     print(f"Validation failed: {e}")
 ```
@@ -463,7 +464,7 @@ check_feat_lab_corr = (check_feat_lab_corr
 result = check_feat_lab_corr.run(dataset=deepchecks_dataset)
 
 # Print the result of the check
-print(result)
+# print(result)
 
 if not result.passed_conditions():
     raise ValueError(
@@ -484,7 +485,7 @@ check_feat_feat_corr = FeatureFeatureCorrelation(threshold=0.9)
 result = check_feat_feat_corr.run(dataset=deepchecks_dataset)
 
 # Print the result of the check
-print(result)
+# print(result)
 
 if not result.passed_conditions():
     raise ValueError(
@@ -497,3 +498,14 @@ if not result.passed_conditions():
 # Export cleaned data
 df.to_csv("../data/processed/processed_heart_disease_data.csv", index=False)
 ```
+
+For the data validation we ensured:
+
+
+- No empty observations were found.
+- No missingness was beyond the expected threshold.
+- All columns have correct data types.
+- No duplicates were found
+- No outliers were found.
+- All categorical mappings were correct.
+- No class imbalance
