@@ -37,6 +37,10 @@ The main questions addressed in this analysis are:
 By applying machine learning to this dataset, we aim to demonstrate how predictive modeling can aid in the early diagnosis 
 of heart disease, providing more accurate and timely insights that could improve healthcare outcomes and resource allocation.
 
+# Methods
+
+The Python programming language [@Python] and the following Python packages were used to perform the analysis: pandas [@reback2020pandas], scikit-learn [@scikitLearn], pandera [@niels_bantilan]. 
+
 ## About Data
 
 The dataset used in this project is UCI Heart Disease dataset consisting of 303 patients records [@heart_disease_45]. 
