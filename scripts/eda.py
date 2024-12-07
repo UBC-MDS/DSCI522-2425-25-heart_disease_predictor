@@ -30,7 +30,7 @@ def main(processed_data, plot_to):
 
    
     plt.figure(figsize=(10, 8))
-    numeric_data = df.select_dtypes(include=['number'])  # Select only numeric columns
+    numeric_data = df.select_dtypes(include=['number']) 
     correlation_matrix = numeric_data.corr()
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', cbar_kws={'label': 'Correlation Coefficient'})
     plt.title('Figure 2: Correlation Between Key Health Indicators')
@@ -44,7 +44,7 @@ def main(processed_data, plot_to):
         var_name='predictor', 
         value_name='value'
     )
-    df_melted['predictor'] = df_melted['predictor'].str.replace('_', ' ')  # Make predictor names prettier
+    df_melted['predictor'] = df_melted['predictor'].str.replace('_', ' ') 
 
 
     plot = alt.Chart(df_melted, width=150, height=100).transform_density(
