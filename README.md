@@ -60,7 +60,7 @@ python scripts/evaluate_heart_disease_predictor.py --x-test data/processed/X_tes
 
 4. To render the PDF and HTML
 
-    4.1 Navigate to the reports folder in your terminal
+    4.1 Navigate to the report folder in your terminal
     
     4.2 Run the following
 
