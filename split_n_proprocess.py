@@ -51,7 +51,6 @@ def main(raw_data, data_to, preprocessor_to, seed):
         "thalassemia"
     ]
 
-  
     numeric_transformer = StandardScaler()
     categorical_transformer = OneHotEncoder(drop="if_binary", handle_unknown="ignore")
 
@@ -64,7 +63,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
     try:
         pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
     except: 
-        os.mkdir(preprocessor_to)
+        os.makedirs(preprocessor_to)
         pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
         
     X_train_enc = pd.DataFrame(preprocessor.fit_transform(X_train), columns=preprocessor.get_feature_names_out())
