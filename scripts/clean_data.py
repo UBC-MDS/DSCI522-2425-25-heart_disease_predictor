@@ -1,16 +1,16 @@
 # clean_data.py
 # author: Yeji Sohn
-# date: 2024-12-02
+# date: 2024-12-06
 
 import click
 import os
 import pandas as pd
+from validate_data import validate_csv_schema
 
-@click.command()
-@click.option('--raw-data', type=str, help="Path to raw data")
-@click.option('--write-to', type=str, help="Path to directory where processed data will be written to")
+import warnings
+warnings.filterwarnings('ignore')
 
-def main(raw_data, write_to):
+def clean_data(raw_data, write_to):
     """
     Processes the raw heart disease dataset, renaming columns, relabeling categorical values, 
     and cleaning the data (e.g., dropping missing values).
@@ -67,6 +67,15 @@ def main(raw_data, write_to):
     except:
         os.mkdir(write_to)
         df.to_csv(os.path.join(write_to, "cleaned_heart_disease_data.csv"), index=False)
+
+@click.command()
+@click.option('--raw-data', type=str, help="Path to raw data")
+@click.option('--write-to', type=str, help="Path to directory where processed data will be written to")
+def main(raw_data, write_to):
+
+    clean_data(raw_data, write_to)
+    validate_csv_schema(os.path.join(write_to, "cleaned_heart_disease_data.csv"))
+    
 
 
 if __name__ == '__main__':
