@@ -4,7 +4,7 @@ Authors: Anna Nandar, Brian Chang, Celine Habashy, Yeji Sohn
 
 ## About
 
-We built models using decision trees and logistic regression algorithms to predict the presence of heart disease based on health-related features. On an unseen dataset, our models achieved an F1 score of 0.834 and an overall accuracy of 0.811. Logistic regression demonstrated better interpretability, with high precision and recall. Some features, such as fasting blood sugar, showed lower importance than anticipated. Moving forward, we plan to explore ensemble methods like Random Forest and Gradient Boosting to improve accuracy and consider incorporating additional clinical data for deeper insights.
+We built models using decision trees and logistic regression algorithms to predict the presence of heart disease based on health-related features. On an unseen dataset, our models achieved an overall accuracy of 84.4%. Logistic regression demonstrated better interpretability, with high precision and recall. Some features, such as fasting blood sugar, showed lower importance than anticipated. Moving forward, we plan to explore ensemble methods like Random Forest and Gradient Boosting to improve accuracy and consider incorporating additional clinical data for deeper insights.
 
 The data set that was used in this project is from Cleveland database. It was sourced from the UCI Machine
 Learning Repository (R. Detrano, et al. 1989) and can be found
@@ -35,8 +35,11 @@ Follow the instructions below to reproduce the analysis.
 
 *NOTE 2*: If you are taken to an authentication screen, please take the token from the logs from where you saw `http://127.0.0.1:PORT_NUMBER/lab?token=...token..is..here...`, and paste it into the login screen's login with token
 
+*NOTE 3*: If you are getting any errors with libraries or such, you may want to make sure the docker container and image are up to date. We've found deleting the image completely from your Docker Desktop the best method to ensure it has all been deleted, and the latest image will be pulled.
+
 3. To run the analysis and regenerate the data, open a terminal (in the docker jupyter lab) and run the following commands:
 
+*NOTE*: You may want to run the commands one at a time if your terminal disconnects.
 ```
 python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
 
