@@ -7,11 +7,13 @@
 #| tbl-cap: "Cross-validation results of Decision Tree Model"
 from IPython.display import Markdown
 from tabulate import tabulate
-import pandas as pd
 dst_cv_results = pd.read_csv("../results/tables/decision_tree/decision_tree_cv_results.csv")
 
 if 'Unnamed: 0' in dst_cv_results.columns:
     dst_cv_results = dst_cv_results.rename(columns={'Unnamed: 0': ''})
+
+dt_test_accuracy_cv = round(dst_cv_results.loc[dst_cv_results[''] == 'test_accuracy', 'mean'].values[0] * 100, 2)
+dt_train_accuracy_cv = round(dst_cv_results.loc[dst_cv_results[''] == 'train_accuracy', 'mean'].values[0] * 100, 2)
 
 Markdown(dst_cv_results.to_markdown(index = False))
 ```
@@ -23,10 +25,10 @@ Markdown(dst_cv_results.to_markdown(index = False))
 ```{python}
 #| label: tbl-dst_model_results
 #| tbl-cap: "Final results of Decision Tree Model"
-dst_model_results = pd.read_csv("../results/tables/decision_tree/classification_report.csv")
-
-if 'Unnamed: 0' in dst_model_results.columns:
-    dst_model_results = dst_model_results.rename(columns={'Unnamed: 0': ''})
+dt_precision_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'precision'].values[0] * 100, 2)
+dt_recall_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'recall'].values[0] * 100, 2)
+dt_precision_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'precision'].values[0] * 100, 2)
+dt_recall_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'recall'].values[0] * 100, 2)
 
 Markdown(dst_model_results.to_markdown(index = False))
 ```
@@ -39,6 +41,9 @@ lg_cv_results = pd.read_csv("../results/tables/logistic_regression/logistic_regr
 
 if 'Unnamed: 0' in lg_cv_results.columns:
     lg_cv_results = lg_cv_results.rename(columns={'Unnamed: 0': ''})
+
+lg_test_accuracy_cv = round(lg_cv_results.loc[lg_cv_results[''] == 'test_accuracy', 'mean'].values[0] * 100, 2)
+lg_train_accuracy_cv = round(lg_cv_results.loc[lg_cv_results[''] == 'train_accuracy', 'mean'].values[0] * 100, 2)
 
 Markdown(lg_cv_results.to_markdown(index = False))
 ```
@@ -54,11 +59,11 @@ Markdown(lg_cv_results.to_markdown(index = False))
 ```{python}
 #| label: tbl-lg_model_results
 #| tbl-cap: "Final results of Logistic Regression Model"
-
-lg_model_results = pd.read_csv("../results/tables/logistic_regression/classification_report.csv")
-
-if 'Unnamed: 0' in lg_model_results.columns:
-    lg_model_results = lg_model_results.rename(columns={'Unnamed: 0': ''})
+#| 
+lg_precision_class_0 = round(lg_model_results.loc[lg_model_results[''] == '0', 'precision'].values[0] * 100, 2)
+lg_recall_class_0 = round(lg_model_results.loc[lg_model_results[''] == '0', 'recall'].values[0] * 100, 2)
+lg_precision_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'precision'].values[0] * 100, 2)
+lg_recall_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'recall'].values[0] * 100, 2)
 
 Markdown(lg_model_results.to_markdown(index = False))
 ```
