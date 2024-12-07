@@ -1,44 +1,37 @@
 import click
 import os
-import altair as alt
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 @click.command()
 @click.option('--processed-data', type=str, help="Path to processed heart disease data")
-@click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
+@click.option('--plot-to', type=str, help="Path to directory where the plot will be written to
+
 def main(processed_data, plot_to):
-    '''Plots the densities of each numeric feature in the processed heart disease data
-       by diagnosis and displays them as a grid of plots. Also saves the plot.'''
+    '''Creates a pair plot with density plots on the diagonal for numeric features by diagnosis.'''
 
     df = pd.read_csv(processed_data)
-
-    df_melted = df.melt(
-        id_vars=['diagnosis'],
-        var_name='predictor',
-        value_name='value'
-    )
-
-    df_melted['predictor'] = df_melted['predictor'].str.replace('_', ' ')
-
-    plot = alt.Chart(df_melted, width=150, height=100).transform_density(
-        'value',
-        groupby=['diagnosis', 'predictor']
-    ).mark_area(opacity=0.7).encode(
-        x=alt.X("value:Q"),
-        y=alt.Y('density:Q', stack=False),
-        color='diagnosis:N'
-    ).facet(
-        'predictor:N',
-        columns=3
-    ).resolve_scale(
-        y='independent'
-    )
 
     if not os.path.exists(plot_to):
         os.makedirs(plot_to)
 
+    numeric_columns = ['age', 'resting_blood_pressure', 'cholesterol', 'max_heart_rate', 'st_depression']
+    pairplot_data = df[numeric_columns + ['diagnosis']]
+
+    pairplot = sns.pairplot(
+        pairplot_data,
+        hue='diagnosis',
+        diag_kind='kde',
+        plot_kws={'alpha': 0.7, 's': 50}, 
+        diag_kws={'shade': True}
+    )
+
+    pairplot.fig.suptitle('Figure: Relationships Between Health Metrics by Diagnosis', y=1.02)
+
     plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.png")
-    plot.save(plot_path, scale_factor=2.0)
+    pairplot.savefig(plot_path)
+    plt.close()
 
 if __name__ == '__main__':
     main()
