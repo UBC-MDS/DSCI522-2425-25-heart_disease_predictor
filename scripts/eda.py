@@ -3,7 +3,6 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import altair as alt
 
 @click.command()
 @click.option('--processed-data', type=str, help="Path to processed heart disease data")

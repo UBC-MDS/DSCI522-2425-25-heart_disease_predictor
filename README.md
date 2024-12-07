@@ -42,7 +42,7 @@ python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public
 
 python scripts/clean_data.py --raw-data="data/raw/raw_heart_disease_data.csv" --write-to="data/cleaned/"
 
-python scripts/split_n_proprocess.py --raw-data data/processed/processed_heart_disease_data.csv --data-to="data/processed/" --preprocessor-to=“results/models/“ --seed 42
+python scripts/split_n_preprocess.py --raw-data data/processed/processed_heart_disease_data.csv --data-to="data/processed/" --preprocessor-to=“results/models/“ --seed 42
 
 python scripts/eda.py --processed-data data/cleaned/cleaned_heart_disease_data.csv --plot-to results/eda_plot
 ```
