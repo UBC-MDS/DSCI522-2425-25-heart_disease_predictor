@@ -2,7 +2,7 @@
 
 ## Summary of Findings: 
 
-In this project, logistic regression and decision tree models were applied to classify individuals based on their likelihood of having heart disease. Both models successfully predicted heart disease diagnoses, with logistic regression outperforming decision trees in terms of interpretability and precision-recall performance. Logistic regression also provided valuable insights into feature importance, making it a strong choice for clinical applications.
+In this project, logistic regression and decision tree models were applied to classify individuals based on their likelihood of having heart disease. Both models successfully predicted heart disease diagnoses, with logistic regression outperforming decision trees in terms of interpretability and precision-recall performance.
 
 The decision tree model  (@tbl-dst_model_results) achieved an accuracy of 74.44%, with a precision of 72.73% and recall of 83.33% for class 0, and a precision of 77.14% and recall of 64.29% for class 1. Its cross-validation results (@tbl-dst_cv_results) indicate potential overfitting, as training accuracy reached 100%, while test accuracy was 74.0%. The confusion matrix (@fig-conf-m-dt) revealed 83 true negatives and 70 true positives, but also 29 false positives and 25 false negatives, highlighting areas for improvement in generalization.
 
