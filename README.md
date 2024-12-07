@@ -36,8 +36,7 @@ Follow the instructions below to reproduce the analysis.
 
 *NOTE 2*: If you are taken to an authentication screen, please take the token from the logs from where you saw `http://127.0.0.1:PORT_NUMBER/lab?token=...token..is..here...`, and paste it into the login screen's login with token
 
-3. To run the analysis,
-open a terminal (in the docker jupyter lab) and run the following commands:
+3. To run the analysis, open a terminal (in the docker jupyter lab) and run the following commands:
 
 ```
 python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
@@ -49,17 +48,28 @@ python scripts/split_n_proprocess.py --raw-data data/processed/processed_heart_d
 python scripts/eda.py --processed-data data/cleaned/cleaned_heart_disease_data.csv --plot-to results/eda_plot
 ```
 
+4. To render the PDF and HTML
+
+    4.1 Navigate to the reports folder in your terminal
+    
+    4.2 Run the following
+
+      `quarto render heart_disease_predictor_report.qmd --to html`
+      `quarto render heart_disease_predictor_report.qmd --to pdf`
+
 #### Clean up
 1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker-compose rm`
 
 ## Dependencies
 
 [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is used to manage the software dependencies for this project.
-All dependencies are specified int the [`yml`](environment.yml).
+All dependencies are specified in the [`environment.yml`](environment.yml).
 
+```
 Dependencies:
   - python=3.11
   - pip=24.3.1
+  - pandas=2.2.2
   - ipykernel=6.29.5
   - nb_conda_kernels=2.5.1
   - scipy=1.14.1
@@ -69,7 +79,12 @@ Dependencies:
   - seaborn=0.13.2
   - ucimlrepo=0.0.7
   - pandera=0.20.2
-
+  - quarto=1.5.57
+  - click=8.1.7
+  - tabulate=0.9.0
+  - lmodern (this is installed by the Dockerfile)
+  - deepchecks=0.18.1
+```
 ## Developer Notes
 ### Developer Dependencies
 1. `conda` (version 24.11.0 or higher)

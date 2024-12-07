@@ -14,7 +14,7 @@ bibliography: references.bib
 execute:
     echo: false
 ---
-<!-- Introduction Sectio -->
+<!-- Introduction Section -->
 
 {{< include _introduction.qmd >}}
  
