@@ -8,6 +8,7 @@ import altair as alt
 @click.command()
 @click.option('--processed-data', type=str, help="Path to processed heart disease data")
 @click.option('--plot-to', type=str, help="Path to directory where the plots will be saved")
+
 def main(processed_data, plot_to):
     '''Creates and saves EDA plots: diagnosis distribution bar chart, correlation heatmap, 
        and density plots of numeric features grouped by diagnosis.'''
@@ -21,7 +22,6 @@ def main(processed_data, plot_to):
         
     plt.figure(figsize=(8, 6))
     sns.countplot(x='diagnosis', data=df, palette='Blues')
-    plt.title('Figure 1: Distribution of Diagnosis')
     plt.xlabel('Diagnosis')
     plt.ylabel('Count')
     diagnosis_plot_path = os.path.join(plot_to, 'diagnosis_distribution.png')
@@ -33,7 +33,6 @@ def main(processed_data, plot_to):
     numeric_data = df.select_dtypes(include=['number']) 
     correlation_matrix = numeric_data.corr()
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', cbar_kws={'label': 'Correlation Coefficient'})
-    plt.title('Figure 2: Correlation Between Key Health Indicators')
     heatmap_plot_path = os.path.join(plot_to, 'correlation_heatmap.png')
     plt.savefig(heatmap_plot_path)
     plt.close()
@@ -62,7 +61,7 @@ def main(processed_data, plot_to):
     )
 
 
-    density_plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.html")
+    density_plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.pdf")
     plot.save(density_plot_path)
 
     print(f"Plots saved to: {plot_to}")
