@@ -44,28 +44,23 @@ def main(processed_data, plot_to):
         value_name='value'
     )
     df_melted['predictor'] = df_melted['predictor'].str.replace('_', ' ') 
-
-
-    plot = alt.Chart(df_melted, width=150, height=100).transform_density(
-        'value',
-        groupby=['diagnosis', 'predictor']
-    ).mark_area(opacity=0.7).encode(
-        x=alt.X("value:Q"),
-        y=alt.Y('density:Q', stack=False),
-        color='diagnosis:N'
-    ).facet(
-        'predictor:N',
-        columns=3
-    ).resolve_scale(
-        y='independent'
+  # Create the pair plot
+    pairplot_data = df[["age", "resting_blood_pressure", "cholesterol", "max_heart_rate", "st_depression", "diagnosis"]]
+    pairplot = sns.pairplot(
+        pairplot_data,
+        hue='diagnosis',
+        diag_kind='kde',  # Use density plots on the diagonal
+        plot_kws={'alpha': 0.7, 's': 50},  # Adjust scatterplot transparency and size
+        diag_kws={'shade': True}  # Add shading to diagonal density plots
     )
 
+    # Save the plot to the specified directory
+    plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.png")
+    pairplot.savefig(plot_path)
+    plt.close()
 
-    density_plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.pdf")
-    plot.save(density_plot_path)
-
-    print(f"Plots saved to: {plot_to}")
 
 if __name__ == '__main__':
     main()
 
+    
