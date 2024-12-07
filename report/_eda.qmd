@@ -1,4 +1,20 @@
-# EDA
+---
+title: EDA
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.16.4
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+
+
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -50,8 +66,17 @@ plt.show()
 
 To better understand the dataset and the relationships between the features and the target variable (diagnosis), we created several visualizations. These allowed us to identify patterns, correlations, and key features that could inform the modelling process.
 
-In the processed data, Classes 1, 2, and 3 were combined into a single category, resulting in two main classes: Class 0 (no or mild disease) and Class 1 (moderate to severe disease). The distribution of these two classes is balanced, with nearly equal representation of patients in each. This balance is beneficial for modelling, as it reduces the risk of bias toward one class and allows the model to learn effectively from both categories.
+In the processed data, Classes 1, 2, and 3 were combined into a single category, resulting in two main classes: Class 0 (no or mild disease) and Class 1 (moderate to severe disease). Looking at @fig-distribution-diagnosis the group without heart disease is slightly larger. The distribution of these two classes is balanced, with nearly equal representation of patients in each. This balance is beneficial for modelling, as it reduces the risk of bias toward one class and allows the model to learn effectively from both categories. This balance is important as it allows for meaningful analysis and ensures that both groups are adequately represented when building predictive models.
 
-To identify features that might help predict heart disease severity, we examined the distributions and relationships of the continuous predictors. The correlation heatmap showed that st_depression, ca, thal, and max_heart_rate had the strongest relationships with diagnosis, suggesting that these features are likely to be the most valuable. Pairwise plots provided more insights , showing clear trends such as lower max_heart_rate and higher st_depression values being associated with Class 1. In contrast, features like cholesterol and fasting_blood_sugar showed little separation between the two classes, indicating they may be less predictive on their own.
+![Distribution of Diagnosis](../results/eda_plots/diagnosis_distribution.png){#fig-distribution-diagnosis}
+
+To identify features that might help predict heart disease severity, we examined the distributions and relationships of the continuous predictors. The correlation heatmap @fig-correlation_heatmap showed that st_depression, ca, thal, and max_heart_rate had the strongest relationships with diagnosis, suggesting that these features are likely to be the most valuable. Pairwise plots provided more insights , showing clear trends such as lower max_heart_rate and higher st_depression values being associated with Class 1. In contrast, features like cholesterol and fasting_blood_sugar showed little separation between the two classes, indicating they may be less predictive on their own.
+
+@fig-feature_densities_by_diagnosis below visualizes the relationships between key health indicators in the heart disease dataset, grouped by diagnosis. Individuals with heart disease tend to have lower maximum heart rates, as seen in @fig-feature_densities_by_diagnosis.
+
+![Correlation Heatmap](../results/eda_plots/correlation_heatmap.png){#fig-correlation_heatmap}
 
 Overall, st_depression and max_heart_rate emerge as the most important features for predicting heart disease severity, while features like cholesterol may play a more limited role in the model.  The distribution of the target variable shows that the data is well-balanced between the two classes. Class 0 and Class 1 have nearly equal representation in the dataset. The balanced distribution of the two classes ensures the model will have a fair representation of both disease and non-disease cases, helping improve its performance.
+
+![Feature Densities by Diagnosis](../results/eda_plots/feature_densities_by_diagnosis.png){#fig-feature_densities_by_diagnosis}
+
