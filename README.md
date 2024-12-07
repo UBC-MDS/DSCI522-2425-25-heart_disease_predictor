@@ -4,9 +4,8 @@ Authors: Anna Nandar, Brian Chang, Celine Habashy, Yeji Sohn
 
 ## About
 
-We built models using decision trees and logistic regression algorithms to predict the presence of heart disease based on health-related features. On an unseen dataset, our models achieved an F1 score of 0.834 and an overall accuracy of 0.841. Logistic regression demonstrated better interpretability, with high precision and recall. Some features, such as fasting blood sugar, showed lower importance than anticipated. Moving forward, we plan to explore ensemble methods like Random Forest and Gradient Boosting to improve accuracy and consider incorporating additional clinical data for deeper insights.
+We built models using decision trees and logistic regression algorithms to predict the presence of heart disease based on health-related features. On an unseen dataset, our models achieved an F1 score of 0.834 and an overall accuracy of 0.811. Logistic regression demonstrated better interpretability, with high precision and recall. Some features, such as fasting blood sugar, showed lower importance than anticipated. Moving forward, we plan to explore ensemble methods like Random Forest and Gradient Boosting to improve accuracy and consider incorporating additional clinical data for deeper insights.
 
-https://github.com/ttimbers/breast-cancer-predictor/tree/1.0.0
 The data set that was used in this project is from Cleveland database. It was sourced from the UCI Machine
 Learning Repository (R. Detrano, et al. 1989) and can be found
 [here](https://archive.ics.uci.edu/dataset/45/heart+disease). This dataset includes features such as age, chest pain type, blood pressure, cholesterol, and more, alongside a binary diagnosis label (presence or absence of heart disease). 
