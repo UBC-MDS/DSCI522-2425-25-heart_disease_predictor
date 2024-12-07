@@ -30,7 +30,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
     X = df.drop(columns=["diagnosis"])
     y = df["diagnosis"]
 
-    
+   
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=seed, stratify=y)
 
     numeric_features = [

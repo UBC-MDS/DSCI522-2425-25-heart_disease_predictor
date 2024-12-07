@@ -1,25 +1,12 @@
-# Classification Analysis
+## Classification Analysis
 
-## Decision Tree: Cross-Validation Results
-
-
-
+### Decision Tree: Cross-Validation Results
 
 ```{python}
-
 #| label: tbl-dst_cv_results
 #| tbl-cap: "Cross-validation results of Decision Tree Model"
-
-# Create a pipeline with the preprocessor and a Decision Tree Classifier
-from IPython.display import display, HTML, Markdown
+from IPython.display import Markdown
 from tabulate import tabulate
-
-decision_tree = make_pipeline(preprocessor, DecisionTreeClassifier(random_state=123))
-
-decision_tree_cv = cross_validate(decision_tree, X_train, y_train, scoring=scoring, cv=5, return_train_score=True)
-
-decision_tree_cv_results = pd.DataFrame(decision_tree_cv).agg(['mean', 'std']).round(3).T
-
 dst_cv_results = pd.read_csv("../results/tables/decision_tree/decision_tree_cv_results.csv")
 
 if 'Unnamed: 0' in dst_cv_results.columns:
@@ -29,81 +16,27 @@ dt_test_accuracy_cv = round(dst_cv_results.loc[dst_cv_results[''] == 'test_accur
 dt_train_accuracy_cv = round(dst_cv_results.loc[dst_cv_results[''] == 'train_accuracy', 'mean'].values[0] * 100, 2)
 
 Markdown(dst_cv_results.to_markdown(index = False))
-
 ```
-
-```{python}
-# Fitting the model
-
-decision_tree.fit(X_train, y_train)
-
-decision_tree_result = decision_tree.predict(X_test)
-```
-
 
 ![Confusion Matrix of Decision Tree Model](../results/tables/decision_tree/decision_tree_confusion_matrix.png){#fig-conf-m-dt}
 
+### Decision Tree: Final Results
 
 ```{python}
-# Confusion Matrix for the model
-
-#confusion_matrix(y_test,decision_tree_result)
-```
-
-## Decision Tree: Final Results
-
-```{python}
-
 #| label: tbl-dst_model_results
 #| tbl-cap: "Final results of Decision Tree Model"
-
-
-# Build Classification Report for Decision Tree Model
-
-decision_tree_report = classification_report(y_test, decision_tree_result, output_dict=True)
-
-decision_tree_report_df = pd.DataFrame(decision_tree_report).transpose()
-
-decision_tree_report_filtered = decision_tree_report_df.loc[['0', '1', 'accuracy'], ['precision', 'recall', 'f1-score']]
-
-#decision_tree_report_filtered
-
-dst_model_results = pd.read_csv("../results/tables/decision_tree/classification_report.csv")
-
-if 'Unnamed: 0' in dst_model_results.columns:
-    dst_model_results = dst_model_results.rename(columns={'Unnamed: 0': ''})
-
-dt_accuracy = round(dst_model_results.loc[dst_model_results[''] == 'accuracy', 'precision'].values[0] * 100, 2)
 dt_precision_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'precision'].values[0] * 100, 2)
 dt_recall_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'recall'].values[0] * 100, 2)
 dt_precision_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'precision'].values[0] * 100, 2)
 dt_recall_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'recall'].values[0] * 100, 2)
 
-
 Markdown(dst_model_results.to_markdown(index = False))
-
-
 ```
 
-## Logistic Regression: Cross-Validation Results
-
-
-
+### Logistic Regression: Cross-Validation Results
 ```{python}
-
 #| label: tbl-lg_cv_results
 #| tbl-cap: "Cross-Validation results of Logistic Regression Model"
-#| 
-# Create a pipeline with the preprocessor and a Logistic Regression Model
-
-cross_val_results = {}
-
-logreg = make_pipeline(preprocessor, LogisticRegression(random_state = 123, max_iter = 1000))
-
-cross_val_results['logreg'] = pd.DataFrame(cross_validate(logreg, X_train, y_train, scoring = scoring, return_train_score = True)).agg(['mean', 'std']).round(3).T
-
-#cross_val_results['logreg']
-
 lg_cv_results = pd.read_csv("../results/tables/logistic_regression/logistic_regression_cv_results.csv")
 
 if 'Unnamed: 0' in lg_cv_results.columns:
@@ -112,62 +45,25 @@ if 'Unnamed: 0' in lg_cv_results.columns:
 lg_test_accuracy_cv = round(lg_cv_results.loc[lg_cv_results[''] == 'test_accuracy', 'mean'].values[0] * 100, 2)
 lg_train_accuracy_cv = round(lg_cv_results.loc[lg_cv_results[''] == 'train_accuracy', 'mean'].values[0] * 100, 2)
 
-
-
 Markdown(lg_cv_results.to_markdown(index = False))
-
 ```
 
 ![Confusion Matrix of Logistic Regression Model](../results/tables/logistic_regression/logistic_regression_confusion_matrix.png){#fig-conf-m-lg}
 
-
-```{python}
-# Confusion Matrix of Logistic Regression Model
-
-# confmat_logreg = ConfusionMatrixDisplay.from_predictions(
-#     y_train,  # true class labels
-#     cross_val_predict(logreg, X_train, y_train),  # predicted class labels
-# )
-```
-
-```{python}
-# Fit the Logistic Regression Model
-
-#logreg.fit(X_train, y_train)
-```
-
-## Logistic Regression: Coefficients
-
-
-```{python}
-logreg_model = logreg.named_steps['logisticregression']
-```
+### Logistic Regression: Coefficients
 
 ![Coefficients of Logistic Regression Model](../results/tables/logistic_regression/logreg_coefficients.png){#fig-coef-lg}
 
-
-## Logistic Regression: Final Results
+### Logistic Regression: Final Results
 
 ```{python}
-
 #| label: tbl-lg_model_results
 #| tbl-cap: "Final results of Logistic Regression Model"
-
-
-lg_model_results = pd.read_csv("../results/tables/logistic_regression/classification_report.csv")
-
-if 'Unnamed: 0' in lg_model_results.columns:
-    lg_model_results = lg_model_results.rename(columns={'Unnamed: 0': ''})
-
-lg_accuracy = round(lg_model_results.loc[lg_model_results[''] == 'accuracy', 'precision'].values[0] * 100, 2)
+#| 
 lg_precision_class_0 = round(lg_model_results.loc[lg_model_results[''] == '0', 'precision'].values[0] * 100, 2)
 lg_recall_class_0 = round(lg_model_results.loc[lg_model_results[''] == '0', 'recall'].values[0] * 100, 2)
 lg_precision_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'precision'].values[0] * 100, 2)
 lg_recall_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'recall'].values[0] * 100, 2)
 
-
-
 Markdown(lg_model_results.to_markdown(index = False))
-
-
 ```

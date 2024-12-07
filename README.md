@@ -36,8 +36,7 @@ Follow the instructions below to reproduce the analysis.
 
 *NOTE 2*: If you are taken to an authentication screen, please take the token from the logs from where you saw `http://127.0.0.1:PORT_NUMBER/lab?token=...token..is..here...`, and paste it into the login screen's login with token
 
-3. To run the analysis,
-open a terminal (in the docker jupyter lab) and run the following commands:
+3. To run the analysis and regenerate the data, open a terminal (in the docker jupyter lab) and run the following commands:
 
 ```
 python scripts/download_data.py --url="https://archive.ics.uci.edu/static/public/45/data.csv" --write-to="data/raw/"
@@ -49,17 +48,29 @@ python scripts/split_n_proprocess.py --raw-data data/processed/processed_heart_d
 python scripts/eda.py --processed-data data/cleaned/cleaned_heart_disease_data.csv --plot-to results/eda_plot
 ```
 
+4. To render the PDF and HTML
+
+    4.1 Navigate to the reports folder in your terminal
+    
+    4.2 Run the following
+
+      `quarto render heart_disease_predictor_report.qmd --to html`
+      `quarto render heart_disease_predictor_report.qmd --to pdf`
+
 #### Clean up
 1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker-compose rm`
 
 ## Dependencies
+[Docker](https://www.docker.com/) is used to create reproducible instances of this project. The docker image used is based on the `quay.io/jupyter/minimal-notebook:notebook-7.0.6 image.` Additional dependencies aside from this image and the below dependencies by Conda are specified in the [Dockerfile](Dockerfile)
 
-[Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is used to manage the software dependencies for this project.
-All dependencies are specified int the [`yml`](environment.yml).
+[Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) is also used to manage the software dependencies for this project.
+All dependencies are specified in the [`environment.yml`](environment.yml).
 
+```
 Dependencies:
   - python=3.11
   - pip=24.3.1
+  - pandas=2.2.2
   - ipykernel=6.29.5
   - nb_conda_kernels=2.5.1
   - scipy=1.14.1
@@ -69,11 +80,17 @@ Dependencies:
   - seaborn=0.13.2
   - ucimlrepo=0.0.7
   - pandera=0.20.2
-
+  - quarto=1.5.57
+  - click=8.1.7
+  - tabulate=0.9.0
+  - lmodern (this is installed by the Dockerfile)
+  - deepchecks=0.18.1
+```
 ## Developer Notes
 ### Developer Dependencies
 1. `conda` (version 24.11.0 or higher)
 2. `conda-lock` (version 2.5.7 or higher)
+3. [Docker](https://www.docker.com/) 
 ### Adding a new dependency
 
 1. Add the dependency to the `environment.yml` file on a new branch.
@@ -124,17 +141,14 @@ Van Rossum, G., & Drake, F. (2009). Python 3 Reference Manual. CreateSpace.
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., & Duchesnay, E. (2011). Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12, 2825–2830.
 </div>
 
+<div id="ref-pandas">
 
-<div id="ref-Deshmukh">
-
-Deshmukh, H. (2020, July 16). Heart disease UCI Diagnosis & Prediction. Medium. https://towardsdatascience.com/heart-disease-uci-diagnosis-prediction-b1943ee835a7 
-
+team, The pandas development. 2020. “Pandas-Dev/Pandas: Pandas.” Zenodo. https://doi.org/10.5281/zenodo.3509134.
 </div>
 
-<div id="ref-Fahadrehman">
+<div id="ref-pandera">
 
-Fahadrehman. (2024, April 28). Heart disease prediction using 9 models. Kaggle. https://www.kaggle.com/code/fahadrehman07/heart-disease-prediction-using-9-models#Evaluation-of-Models
-
+Bantilan, Niels. 2020. “Pandera: Statistical Data Validation of Pandas Dataframes.” In Proceedings of the 19th Python in Science Conference, edited by Meghann Agarwal, Chris Calloway, Dillon Niederhut, and David Shupe, 116–24. https://doi.org/ 10.25080/Majora-342d178e-010 .
 </div>
 
 </div>
