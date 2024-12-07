@@ -23,8 +23,6 @@ from sklearn.metrics import classification_report
 from sklearn.tree import DecisionTreeClassifier
 ```
 
-## Feature Encoding and Transformation
-
 ```{python}
 #splitting the features 
 
@@ -55,7 +53,7 @@ preprocessor = make_column_transformer(
     (categorical_transformer, categorical_features)
 )
 
-preprocessor
+#preprocessor
 ```
 
 ```{python}
@@ -72,11 +70,11 @@ preprocessor.verbose_feature_names_out = False
 
 X_train_enc = pd.DataFrame(preprocessor.fit_transform(X_train), columns= preprocessor.get_feature_names_out())
 
-X_train_enc
+#X_train_enc
 ```
 
 ```{python}
-X_train_enc.columns
+#X_train_enc.columns
 ```
 
 ```{python}

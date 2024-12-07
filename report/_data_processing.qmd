@@ -1,4 +1,83 @@
-# Data Processing
+## Data Cleaning Process
+
+In order to prepare the raw heart disease dataset for analysis, 
+several cleaning steps were undertaken to 
+ensure the data is consistent, complete, and properly formatted. 
+These steps include renaming columns, relabeling categorical values, 
+and handling missing data. 
+
+Below is a detailed description of each cleaning task performed:
+
+### Cleaning Data
+1. **Renaming Columns**:
+   The original dataset contained column names that were unclear. 
+   To make the dataset more understandable and easier to work with, the column names were 
+   renamed to more descriptive, readable terms. 
+
+2. **Relabeling Categorical Variables**:
+   Several columns contained categorical data that needed to be relabeled for better interpretability:
+   
+| **Column Name**              | **Original Values**           | **New Values**                                                |
+|------------------------------|-------------------------------|--------------------------------------------------------------|
+| **Chest Pain Type**           | 1, 2, 3, 4                    | 'Typical angina', 'Atypical angina', 'Non-anginal pain', 'Asymptomatic' |
+| **Fasting Blood Sugar**       | 'yes', 'no'                   | 1 (yes), 0 (no)                                              |
+| **Resting ECG**               | 0, 1, 2                       | 'Normal', 'ST-T wave abnormality', 'Left ventricular hypertrophy' |
+| **Exercise Induced Angina**   | 0, 1                          | 'No', 'Yes'                                                  |
+| **Slope**                     | 1, 2, 3                       | 'Upsloping', 'Flat', 'Downsloping'                           |
+| **Thalassemia**               | 3, 6, 7                       | 'Normal', 'Fixed defect', 'Reversible defect'                |
+| **Diagnosis**                 | 2, 3, 4                       | 1 (presence of heart disease)                                |
+
+   
+3. **Handling Missing Values**:
+   The raw dataset contained missing values that could interfere with analysis. 
+   To address this, all rows with missing values were removed from the dataset. 
+   
+### Validating Data
+   After cleaning, several validation checks were performed to ensure data quality:
+
+   - **Empty Observations**: A check was run to ensure there were no rows where all values were missing.
+   - **Missingness Threshold**: Missing values in numeric and categorical columns were validated to 
+   ensure they did not exceed the defined thresholds (e.g., no more than 5% missing data in certain columns).
+   - **Column Names and Data Types**: The dataset was validated for correct column names and data types 
+   (e.g., integer, string, float) to ensure consistency with expectations.
+   - **Duplicate Records**: A check for duplicate rows was conducted to ensure that no redundant 
+   observations were present.
+   - **Outliers and Anomalous Values**: Numerical columns were validated to ensure values fell 
+   within acceptable ranges (e.g., age between 0 and 120, cholesterol between 100 and 600).
+   - **Correct Categorical Levels**: Categorical variables were checked to ensure they only contained 
+   valid values (e.g., 'typical angina', 'normal', etc.).
+   - **Class Proportions**: The distribution of the target variable, "diagnosis," was checked to 
+   ensure balanced proportions of 0 and 1, within a specified tolerance.
+   - **Feature-Label Correlation**: A deep check was performed to ensure that the correlation between 
+   features and the target variable ("diagnosis") did not exceed an acceptable threshold (0.9), 
+   which could indicate potential data leakage or multicollinearity.
+   - **Feature-Feature Correlation**: A check was conducted to ensure no pairs of features exhibited 
+   highly correlated relationships that could lead to multicollinearity.
+
+   ## Cleaned dataset
+   This dataset will be used onwards for all analysis.
+
+   | Variable Name            | Role     | Type        | Description                                        | Units          | Missing Values |
+   |--------------------------|----------|-------------|----------------------------------------------------|----------------|----------------|
+   | age                      | Feature  | Integer     | Age of the patient in years                        | years          | no             |
+   | sex                      | Feature  | Categorical | Male/Female                                        |                | no             |
+   | chest_pain_type          | Feature  | Categorical | Chest pain type: [typical angina, atypical angina, non-anginal, asymptomatic] |                | no             |
+   | resting_blood_pressure   | Feature  | Integer     | Resting blood pressure (in mm Hg on admission to the hospital) | mm Hg          | no             |
+   | cholesterol              | Feature  | Integer     | Serum cholesterol in mg/dl                         | mg/dl          | no             |
+   | fasting_blood_sugar      | Feature  | Categorical | If fasting blood sugar > 120 mg/dl                 |                | no             |
+   | rest_ecg                 | Feature  | Categorical | Resting electrocardiographic results: [normal, stt abnormality, lv hypertrophy] |                | no             |
+   | max_heart_rate           | Feature  | Integer     | Maximum heart rate achieved                        | bpm            | no             |
+   | exercise_induced_angina  | Feature  | Categorical | Exercise-induced angina (True/False)               |                | no             |
+   | st_depression            | Feature  | Integer     | ST depression induced by exercise relative to rest |                | no             |
+   | slope                    | Feature  | Categorical | The slope of the peak exercise ST segment          |                | no             |
+   | num_of_vessels           | Feature  | Integer     | Number of major vessels (0-3) colored by fluoroscopy|                | no             |
+   | thalassemia              | Feature  | Categorical | Thalassemia: [normal, fixed defect, reversible defect] |                | no             |
+   | diagnosis                | Target   | Categorical | Predicted attribute (1 = presence of heart disease, 0 = absence) |                | no             |
+
+   : My Caption {#tbl-cleanedTable}
+
+
+<!-- TODO: Delete Below -->
 
 ```{python}
 import numpy as np

@@ -1,25 +1,56 @@
 # Summary
 
-In this project, we developed a classification system using Logistic Regression and Decision Tree models to predict heart disease diagnosis based on multiple features such as age, blood pressure, cholesterol, and more. The data was sourced from the UCI Heart Disease dataset [@heart_disease_45], and preprocessing involved cleaning, transforming, and encoding categorical variables for analysis. According to our experiments, the logistic regression model achieved the high accuracy 82%. Decision Tree provided competitive results but lacked the interpretability of logistic regression. The results suggest that machine learning models can be used to predict heart disease effectively, aiding healthcare providers in early detection and intervention.
+In this project, we developed a classification system using Logistic Regression and Decision Tree models 
+to predict heart disease diagnosis based on multiple features such as age, blood pressure, cholesterol, 
+and more. The data was sourced from the UCI Heart Disease dataset [@heart_disease_45], and preprocessing 
+involved cleaning, transforming, and encoding categorical variables for analysis. According to our experiments, 
+the logistic regression model achieved the high accuracy 82%. Decision Tree provided competitive results but lacked 
+the interpretability of logistic regression. The results suggest that machine learning models can be used to predict 
+heart disease effectively, aiding healthcare providers in early detection and intervention.
 
 # Introduction
 
-Heart disease is one of the leading causes of death worldwide, and early detection is crucial for improving treatment outcomes and patient survival rates. Timely diagnosis can help healthcare providers make more informed decisions, allocate resources more effectively, and ultimately save lives. Traditional diagnostic methods often involve manual interpretation of clinical test results, which can be time-consuming, subjective, and prone to errors. As health data becomes increasingly available, machine learning has emerged as a powerful tool for diagnosing and predicting diseases, including heart disease.
+Heart disease is one of the leading causes of death worldwide, and early detection is crucial for improving treatment 
+outcomes and patient survival rates. Timely diagnosis can help healthcare providers make more informed decisions, 
+allocate resources more effectively, and ultimately save lives. Traditional diagnostic methods often involve manual 
+interpretation of clinical test results, which can be time-consuming, subjective, and prone to errors. 
+As health data becomes increasingly available, machine learning has emerged as a powerful tool for diagnosing and 
+predicting diseases, including heart disease.
 
-This project explores the application of machine learning models to classify individuals based on their likelihood of having heart disease using clinical data. Specifically, we use the UCI Heart Disease dataset, which contains medical records of patients, including features such as age, chest pain type, blood pressure, cholesterol levels, and other relevant clinical attributes. The dataset also includes a binary diagnosis label indicating the presence or absence of heart disease, which forms the basis for predictive modeling.
+This project explores the application of machine learning models to classify individuals based on their likelihood of 
+having heart disease using clinical data. Specifically, we use the UCI Heart Disease dataset, which contains medical 
+records of patients, including features such as age, chest pain type, blood pressure, cholesterol levels, and other 
+relevant clinical attributes. The dataset also includes a binary diagnosis label indicating the presence or absence of 
+heart disease, which forms the basis for predictive modeling.
 
-For this analysis, we focus on the Heart Disease dataset, which includes 13 features. These features represent key clinical indicators used to assess cardiovascular health, and the target variable categorically indicates the presence or absence of heart disease. For the purpose of this analysis, we focus on a binary classification problem, where we aim to distinguish between individuals with no heart disease and those with some form of heart disease. Additionally, the dataset has been anonymized to protect patient privacy, with identifiers such as names and social security numbers replaced by anonymous values.
+For the analysis, we focus on the Heart Disease dataset, which includes 13 features. These features represent key 
+clinical indicators used to assess cardiovascular health, and the target variable categorically indicates the presence or 
+absence of heart disease. For the purpose of this analysis, we focus on a binary classification problem, where we aim to 
+distinguish between individuals with no heart disease and those with some form of heart disease. Additionally, the dataset 
+has been anonymized to protect patient privacy, with identifiers such as names and social security numbers replaced by anonymous values.
 
 The main questions addressed in this analysis are:
 
 1. What is the overall accuracy of a classification model for heart disease prediction?
 2. Which features are most predictive of the presence of heart disease?
 
-By applying machine learning to this dataset, we aim to demonstrate how predictive modeling can aid in the early diagnosis of heart disease, providing more accurate and timely insights that could improve healthcare outcomes and resource allocation.
+In this analysis, we aim to determine whether **a machine learning model can predict the likelihood of a patient developing heart disease based 
+on various health indicators and demographic factors**. This prediction can be highly valuable for healthcare providers, enabling them to 
+identify individuals at higher risk and prioritize early interventions or preventive measures. By focusing resources on those most at risk, 
+healthcare institutions can optimize patient care and reduce unnecessary testing or treatments for low-risk individuals. Additionally, 
+this analysis will provide deeper insights into the key factors contributing to heart disease, helping healthcare professionals design more 
+personalized and effective prevention strategies for their patients.
+
+# Methods
+
+The Python programming language [@Python] and the following Python packages were used to perform the analysis: pandas [@reback2020pandas], scikit-learn [@scikitLearn], pandera [@niels_bantilan]. 
 
 ## About Data
 
-The dataset used in this project is UCI Heart Disease dataset consisting of 303 patients records [@heart_disease_45]. The dataset is anonymized to protect patient privacy and includes 13 features that provide valuable insights into an individual's health status.
+The dataset used in this project is UCI Heart Disease dataset consisting of 303 patients records [@heart_disease_45]. 
+The data was collected from 425 patients undergoing angiography at the Hungarian Institute of Cardiology in Budapest, 
+Hungary [@Detrano1989InternationalAO]. The dataset is anonymized to protect patient privacy and includes 13 features that 
+provide valuable insights into an individual's health status. Our target/response variable is `diagnosis`
 
 ##### Key Features:
 
