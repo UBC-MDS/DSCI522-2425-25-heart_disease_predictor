@@ -2,9 +2,16 @@
 
 ## Decision Tree: Cross-Validation Results
 
+
+
+
 ```{python}
+
+#| label: tbl-dst_cv_results
+#| tbl-cap: "Cross-validation results of Decision Tree Model"
+
 # Create a pipeline with the preprocessor and a Decision Tree Classifier
-from IPython.display import display, HTML
+from IPython.display import display, HTML, Markdown
 from tabulate import tabulate
 
 decision_tree = make_pipeline(preprocessor, DecisionTreeClassifier(random_state=123))
@@ -18,8 +25,7 @@ dst_cv_results = pd.read_csv("../results/tables/decision_tree/decision_tree_cv_r
 if 'Unnamed: 0' in dst_cv_results.columns:
     dst_cv_results = dst_cv_results.rename(columns={'Unnamed: 0': ''})
 
-
-print(tabulate(dst_cv_results, headers='keys', tablefmt='pipe'))
+Markdown(dst_cv_results.to_markdown(index = False))
 
 ```
 
@@ -44,6 +50,11 @@ decision_tree_result = decision_tree.predict(X_test)
 ## Decision Tree: Final Results
 
 ```{python}
+
+#| label: tbl-dst_model_results
+#| tbl-cap: "Final results of Decision Tree Model"
+
+
 # Build Classification Report for Decision Tree Model
 
 decision_tree_report = classification_report(y_test, decision_tree_result, output_dict=True)
@@ -60,8 +71,8 @@ if 'Unnamed: 0' in dst_model_results.columns:
     dst_model_results = dst_model_results.rename(columns={'Unnamed: 0': ''})
 
 
-html_table = dst_model_results.to_html(index=False)
-display(HTML(html_table))
+Markdown(dst_model_results.to_markdown(index = False))
+
 
 ```
 
@@ -70,6 +81,10 @@ display(HTML(html_table))
 
 
 ```{python}
+
+#| label: tbl-lg_cv_results
+#| tbl-cap: "Cross-Validation results of Logistic Regression Model"
+#| 
 # Create a pipeline with the preprocessor and a Logistic Regression Model
 
 cross_val_results = {}
@@ -86,8 +101,7 @@ if 'Unnamed: 0' in lg_cv_results.columns:
     lg_cv_results = lg_cv_results.rename(columns={'Unnamed: 0': ''})
 
 
-html_table = lg_cv_results.to_html(index=False)
-display(HTML(html_table))
+Markdown(lg_cv_results.to_markdown(index = False))
 
 ```
 
@@ -122,12 +136,17 @@ logreg_model = logreg.named_steps['logisticregression']
 ## Logistic Regression: Final Results
 
 ```{python}
+
+#| label: tbl-lg_model_results
+#| tbl-cap: "Final results of Logistic Regression Model"
+
+
 lg_model_results = pd.read_csv("../results/tables/logistic_regression/classification_report.csv")
 
 if 'Unnamed: 0' in lg_model_results.columns:
     lg_model_results = lg_model_results.rename(columns={'Unnamed: 0': ''})
 
+Markdown(lg_model_results.to_markdown(index = False))
 
-html_table = lg_model_results.to_html(index=False)
-display(HTML(html_table))
+
 ```
