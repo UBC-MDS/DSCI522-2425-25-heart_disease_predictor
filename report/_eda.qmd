@@ -1,6 +1,4 @@
 # EDA
-## EDA Results
-
 To better understand the dataset and the relationships between the features and the target variable (diagnosis), we created several visualizations. These allowed us to identify patterns, correlations, and key features that could inform the modelling process.
 
 In the processed data, Classes 1, 2, and 3 were combined into a single category, resulting in two main classes: Class 0 (no or mild disease) and Class 1 (moderate to severe disease). Looking at @fig-distribution-diagnosis the group without heart disease is slightly larger. The distribution of these two classes is balanced, with nearly equal representation of patients in each. This balance is beneficial for modelling, as it reduces the risk of bias toward one class and allows the model to learn effectively from both categories. This balance is important as it allows for meaningful analysis and ensures that both groups are adequately represented when building predictive models.
