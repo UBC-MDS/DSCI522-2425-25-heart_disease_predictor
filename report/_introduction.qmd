@@ -34,8 +34,8 @@ The main questions addressed in this analysis are:
 1. What is the overall accuracy of a classification model for heart disease prediction?
 2. Which features are most predictive of the presence of heart disease?
 
-In this analysis, we aim to determine whether a machine learning model can predict the likelihood of a patient developing heart disease based 
-on various health indicators and demographic factors. This prediction can be highly valuable for healthcare providers, enabling them to 
+In this analysis, we aim to determine whether **a machine learning model can predict the likelihood of a patient developing heart disease based 
+on various health indicators and demographic factors**. This prediction can be highly valuable for healthcare providers, enabling them to 
 identify individuals at higher risk and prioritize early interventions or preventive measures. By focusing resources on those most at risk, 
 healthcare institutions can optimize patient care and reduce unnecessary testing or treatments for low-risk individuals. Additionally, 
 this analysis will provide deeper insights into the key factors contributing to heart disease, helping healthcare professionals design more 
