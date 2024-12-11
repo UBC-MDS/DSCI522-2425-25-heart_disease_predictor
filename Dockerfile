@@ -7,6 +7,8 @@ USER root
 # Switch to root user and install ldmodern so we can render our QMDs as PDFs
 RUN sudo apt update \
     && sudo apt install -y lmodern
+RUN sudo apt-get update \
+    && sudo apt-get install -y make
 RUN fix-permissions "/home/${NB_USER}"
 USER $NB_UID
 # Switch back to non-root user to install packages from conda-linux-64.lock
