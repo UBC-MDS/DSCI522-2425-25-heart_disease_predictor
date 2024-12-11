@@ -1,13 +1,8 @@
 import pandas as pd
 import numpy as np
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer, make_column_transformer
+from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import make_scorer, precision_score, recall_score, f1_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
-import matplotlib.pyplot as plt
 import pickle
 import os
 import click
