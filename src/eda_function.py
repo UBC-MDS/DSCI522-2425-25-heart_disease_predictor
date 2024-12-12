@@ -1,47 +1,49 @@
-import click
 import os
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
-import altair as alt
+import matplotlib.pyplot as plt
+import sys
 
-@click.command()
-@click.option('--training-data', type=str, help="Path to processed heart disease data")
-@click.option('--target-data', type=str, help="Path to target data (y_train)")
-@click.option('--plot-to', type=str, help="Path to directory where the plots will be saved")
+"""
+Creates EDA plots for the pre-processed training data from the Wisconsin breast cancer data. Saves the plots as a PDF and PNG file.
 
-def main(training_data, target_data, plot_to):
-    '''Creates and saves EDA plots: diagnosis distribution bar chart, correlation heatmap, 
-       and density plots of numeric features grouped by diagnosis.'''
-    
+Usage: scripts/eda_function.py --train=<train> --out_dir=<out_dir>
+
+Options:
+--train=<train>     Path (including filename) to training data (which needs to be saved as a CSV file)
+--out_dir=<out_dir> Path to directory where the plots should be saved
+"""
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+def main(processed_data, target_data, plot_to):
+
     df_features = pd.read_csv("data/processed/X_train.csv")
     df_target = pd.read_csv("data/processed/y_train.csv")
-   
+    
     df = pd.concat([df_features, df_target['diagnosis']], axis=1)
-
-  
     if not os.path.exists(plot_to):
         os.makedirs(plot_to)
-        
+
     # Diagnosis distribution bar chart
+    diagnosis_plot_path = os.path.join(plot_to, 'diagnosis_distribution.png')
     plt.figure(figsize=(8, 6))
     sns.countplot(x='diagnosis', data=df, palette='Blues')
     plt.xlabel('Diagnosis')
     plt.ylabel('Count')
-    diagnosis_plot_path = os.path.join(plot_to, 'diagnosis_distribution.png')
     plt.savefig(diagnosis_plot_path)
     plt.close()
 
     # Correlation heatmap
+    heatmap_plot_path = os.path.join(plot_to, 'correlation_heatmap.png')
     plt.figure(figsize=(10, 8))
-    numeric_data = df.select_dtypes(include=['number']) 
+    numeric_data = df.select_dtypes(include=['number'])
     correlation_matrix = numeric_data.corr()
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', cbar_kws={'label': 'Correlation Coefficient'})
-    heatmap_plot_path = os.path.join(plot_to, 'correlation_heatmap.png')
     plt.savefig(heatmap_plot_path)
     plt.close()
 
-    # Pairplot grouped by diagnosis
+    # Density plots for numeric features grouped by diagnosis
+    density_plot_path = os.path.join(plot_to, 'feature_densities_by_diagnosis.png')
     pairplot_data = df[["age", "resting_blood_pressure", "cholesterol", "max_heart_rate", "st_depression", "diagnosis"]]
     pairplot = sns.pairplot(
         pairplot_data,
@@ -50,10 +52,13 @@ def main(training_data, target_data, plot_to):
         plot_kws={'alpha': 0.7, 's': 50}, 
         diag_kws={'shade': True}  
     )
-
-    plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.png")
-    pairplot.savefig(plot_path)
+    pairplot.savefig(density_plot_path)
     plt.close()
 
+
 if __name__ == '__main__':
-    main()
+    train_data = "data/processed/X_train.csv"
+    target_data = "data/processed/y_train.csv"
+    plot_to = "results/eda_plots"
+
+    main(processed_data, plot_to)
