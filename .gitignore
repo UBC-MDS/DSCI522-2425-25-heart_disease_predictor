@@ -4,3 +4,6 @@ ipynb_checkpoints/
 
 **.DS_Store
 **.ipynb_checkpoints
+
+# Ignore all __pycache__ directories
+**/__pycache__/
