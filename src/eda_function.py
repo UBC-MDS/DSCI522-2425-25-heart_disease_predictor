@@ -52,9 +52,3 @@ def main(processed_data, plot_to):
     )
     pairplot.savefig(density_plot_path)
     plt.close()
-
-if __name__ == '__main__':
-    processed_data = "data/cleaned/cleaned_heart_disease_data.csv"
-    plot_to = "results/eda_plots"
-
-    main(processed_data, plot_to)
