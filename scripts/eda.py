@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 @click.command()
-@click.option('--processed-data', type=str, help="Path to processed heart disease data")
+@click.option('--training-data', type=str, help="Path to processed heart disease data")
 @click.option('--plot-to', type=str, help="Path to directory where the plots will be saved")
 
 def main(processed_data, plot_to):
