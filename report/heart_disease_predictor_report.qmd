@@ -17,27 +17,27 @@ execute:
 ---
 <!-- Introduction Section -->
 
-{{< include _introduction.qmd >}}
+{{< include content/_introduction.qmd >}}
  
 <!-- Data Processing Section -->
 
-{{< include _data_processing.qmd >}}
+{{< include content/_data_processing.qmd >}}
 
 <!-- EDA Section -->
 
-{{< include _eda.qmd >}}
+{{< include content/_eda.qmd >}}
 
 <!-- Methods and Results Section -->
 
-{{< include _methods_and_results.qmd >}}
+{{< include content/_methods_and_results.qmd >}}
 
 <!-- Classification Analysis Section -->
 
-{{< include _analysis.qmd >}}
+{{< include content/_analysis.qmd >}}
 
 <!-- Discussion Section -->
 
-{{< include _discussion.qmd >}}
+{{< include content/_discussion.qmd >}}
 
 # References
 
