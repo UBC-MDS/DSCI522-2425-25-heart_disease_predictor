@@ -43,13 +43,17 @@ expected_output_files = [
     "feature_densities_by_diagnosis.png"
 ]
 
-# Test for successful plot creation
+
 def test_main_creates_plots(tmp_path):
     csv_path = tmp_path / "valid_data.csv"
     output_dir = tmp_path / "output"
     valid_data.to_csv(csv_path, index=False)
     
-    main(csv_path, output_dir)
+
+    target_csv_path = "" 
+
+    main(csv_path, target_csv_path, output_dir)
     
     for file_name in expected_output_files:
         assert os.path.exists(output_dir / file_name), f"{file_name} was not created."
+

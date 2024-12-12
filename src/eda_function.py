@@ -15,10 +15,12 @@ Options:
 """
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-def main(processed_data, plot_to):
+def main(processed_data, target_data, plot_to):
 
-    df = pd.read_csv(processed_data)
-
+    df_features = pd.read_csv("data/processed/X_train.csv")
+    df_target = pd.read_csv("data/processed/y_train.csv")
+    
+    df = pd.concat([df_features, df_target['diagnosis']], axis=1)
     if not os.path.exists(plot_to):
         os.makedirs(plot_to)
 
@@ -55,7 +57,8 @@ def main(processed_data, plot_to):
 
 
 if __name__ == '__main__':
-    processed_data = "data/cleaned/cleaned_heart_disease_data.csv"
+    train_data = "data/processed/X_train.csv"
+    target_data = "data/processed/y_train.csv"
     plot_to = "results/eda_plots"
 
     main(processed_data, plot_to)
