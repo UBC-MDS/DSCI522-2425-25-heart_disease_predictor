@@ -14,15 +14,11 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import pickle
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-def load_data(x_train_path, y_train_path):
-    """Loads the training data from CSV files with error handling."""
-    try:
-        X_train = pd.read_csv(x_train_path)
-        y_train = pd.read_csv(y_train_path).squeeze()
-    except FileNotFoundError as e:
-        raise FileNotFoundError(f"File not found: {e}")
-    return X_train, y_train
+from src.load_data import load_data
 
 def create_directories(base_dir, model_name):
     """Creates necessary directories for saving models and tables with error handling."""

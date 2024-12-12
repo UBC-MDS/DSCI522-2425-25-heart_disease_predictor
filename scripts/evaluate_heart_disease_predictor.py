@@ -9,16 +9,11 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn.metrics import classification_report
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-def load_test_data(x_test_path, y_test_path):
-    """Loads the test data from CSV files with error handling."""
-    try:
-        X_test = pd.read_csv(x_test_path)
-        y_test = pd.read_csv(y_test_path).squeeze()
-    
-    except FileNotFoundError as e:
-        raise FileNotFoundError(f"File not found: {e}")
-    return X_test, y_test
+from src.load_data import load_data
 
 def load_pipeline(pipeline_path):
     """Loads a saved pipeline object from a Pickle file with error handling."""
@@ -60,7 +55,7 @@ def main(x_test, y_test, pipeline_from, results_to, seed):
         np.random.seed(seed)
         
         # Load test data and saved pipeline
-        X_test, y_test = load_test_data(x_test, y_test)
+        X_test, y_test = load_data(x_test, y_test)
         pipeline = load_pipeline(pipeline_from)
         
         # Evaluate the model
