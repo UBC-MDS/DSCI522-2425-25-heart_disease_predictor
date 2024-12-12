@@ -5,6 +5,9 @@
 import click
 import os
 import pandas as pd
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 from validate_data import validate_csv_schema
 
 import warnings
