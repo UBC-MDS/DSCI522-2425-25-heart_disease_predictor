@@ -74,6 +74,7 @@ Dependencies:
   - lmodern (this is installed by the Dockerfile)
   - make (this is installed by the Dockerfile)
   - deepchecks=0.18.1
+  - pytest=8.34
 ```
 ## Developer Notes
 ### Developer Dependencies
