@@ -67,7 +67,7 @@ figures : ${EDA_FIG_DIR}/correlation_heatmap.png ${EDA_FIG_DIR}/diagnosis_distri
 ${EDA_FIG_DIR}/correlation_heatmap.png \
 ${EDA_FIG_DIR}/diagnosis_distribution.png \
 ${EDA_FIG_DIR}/feature_densities_by_diagnosis.png : scripts/eda.py
-	python scripts/eda.py --processed-data data/cleaned/cleaned_heart_disease_data.csv --plot-to=${EDA_FIG_DIR}
+	python scripts/eda.py --training-data=${PROC_DIR}/X_test.csv --target-data=${PROC_DIR}/y_train.csv --plot-to=${EDA_FIG_DIR}
 
 # Model Fitting ----------------------------------------------------------------------------------
 # Generates all model fits and associated images and results
