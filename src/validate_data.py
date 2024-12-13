@@ -46,7 +46,7 @@ def validate_csv_schema(file_path):
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
-        raise ValueError(f"❌ Error reading the CSV file: {e}")
+        raise FileNotFoundError(f"❌ Error reading the CSV file: {e}")
     
     # 3. Check for empty observations
     empty_obs_schema = pa.DataFrameSchema(
