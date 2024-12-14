@@ -24,6 +24,8 @@ def check_proportions(series, tolerance=0.1):
     bool: True if the proportions of class 0 and class 1 are approximately equal 
           (within the specified tolerance), False otherwise.
     """
+    if series.empty:
+        return True
 
     # Calculate the normalized proportions of the unique values
     proportions = series.value_counts(normalize=True)
@@ -47,6 +49,7 @@ def validate_csv_schema(file_path):
         df = pd.read_csv(file_path)
     except Exception as e:
         raise FileNotFoundError(f"❌ Error reading the CSV file: {e}")
+        raise e
     
     # 3. Check for empty observations
     empty_obs_schema = pa.DataFrameSchema(
@@ -60,6 +63,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: No empty observations found.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 4. Missingness not beyond expected threshold
     missingness_threshold_schema = pa.DataFrameSchema(
@@ -77,9 +81,8 @@ def validate_csv_schema(file_path):
             "num_of_vessels": Column(
                 float,
                 checks=[
-                    Check(lambda s: np.isnan(s) | (
-                        (s >= 0) & (s <= 4)), element_wise=True),
-                    Check(lambda s: np.isnan(s).mean() <= 0.05, element_wise=False,
+                    Check(lambda s: np.isnan(s) | ((s >= 0) & (s <= 4)), element_wise=True),
+                    Check(lambda s: s.isnull().sum() / len(s) <= 0.05, element_wise=False,
                         error="Too many null values in 'num_of_vessels' column.")
                 ],
                 nullable=True
@@ -103,6 +106,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: No missingness beyond expected threshold.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 2 & 5. Check for correct column names and correct data types in each column
     column_type_schema = pa.DataFrameSchema(
@@ -129,6 +133,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: All columns have correct data types.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 6. No duplicate observations
     duplicate_schema = pa.DataFrameSchema(
@@ -142,6 +147,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: No duplicates found.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 7. No Outlier or Anamalous Values
     numerical_schema = pa.DataFrameSchema(
@@ -159,6 +165,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: No outliers found.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 8: Correct Category Levels
     map_categorical_schema = pa.DataFrameSchema(
@@ -194,6 +201,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: All categorical mappings are correct.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 9. Check Target/Response Variable Data Distribution
     proportion_check_schema = pa.DataFrameSchema(
@@ -211,6 +219,7 @@ def validate_csv_schema(file_path):
         print("Validation passed: Class proportions are as expected.")
     except pa.errors.SchemaError as e:
         print(f"Validation failed: {e}")
+        raise e
 
     # 10. Deep check anomalous correlations between target/response variable and features/explanatory variables
     deepchecks_dataset = Dataset(
