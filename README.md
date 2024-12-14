@@ -45,6 +45,15 @@ Follow the instructions below to reproduce the analysis.
 
 *NOTE: Please see [Running individual parts of the analysis using Make](#running-individual-parts-of-the-analysis-using-make) to run individual parts only.
 
+#### Running tests
+
+At the root of the project in a terminal, enter:
+```
+python -m pytest tests/test_validate.py
+python -m pytest tests/test_create_dir_if_not_exist.py
+python -m pytest tests/test_load_data.py
+```
+
 #### Clean up
 1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker-compose rm`
 
