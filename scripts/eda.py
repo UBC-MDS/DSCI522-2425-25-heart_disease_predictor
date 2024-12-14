@@ -24,7 +24,7 @@ def main(training_data, target_data, plot_to):
         
     # Diagnosis distribution bar chart
     plt.figure(figsize=(8, 6))
-    sns.countplot(x='diagnosis', data=df, palette='Blues')
+    sns.countplot(x='diagnosis', data=df, hue='diagnosis', palette='Blues', legend=False)
     plt.xlabel('Diagnosis')
     plt.ylabel('Count')
     diagnosis_plot_path = os.path.join(plot_to, 'diagnosis_distribution.png')
@@ -47,7 +47,7 @@ def main(training_data, target_data, plot_to):
         hue='diagnosis',
         diag_kind='kde', 
         plot_kws={'alpha': 0.7, 's': 50}, 
-        diag_kws={'shade': True}  
+        diag_kws={'fill': True}  
     )
 
     plot_path = os.path.join(plot_to, "feature_densities_by_diagnosis.png")
