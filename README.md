@@ -48,11 +48,18 @@ Follow the instructions below to reproduce the analysis.
 #### Running tests
 
 At the root of the project in a terminal, enter:
+
 ```
 python -m pytest tests/test_validate.py
 python -m pytest tests/test_create_dir_if_not_exist.py
 python -m pytest tests/test_load_data.py
+python -m pytest tests/test_save_classification_report.py
 ```
+
+Or if you want to run them all at once, in the root folder enter:
+
+```pytest```
+
 
 #### Clean up
 1. To make sure the docker container was properly cleaned up, after typing `ctrl` + `c` in the terminal where you launched the docker container, type `docker-compose rm`

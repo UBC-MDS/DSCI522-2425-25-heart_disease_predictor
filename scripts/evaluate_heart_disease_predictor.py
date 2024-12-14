@@ -10,10 +10,10 @@ import numpy as np
 import pickle
 from sklearn.metrics import classification_report
 import sys
-import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.load_data import load_data
+from src.save_classification_report import save_classification_report
 
 def load_pipeline(pipeline_path):
     """Loads a saved pipeline object from a Pickle file with error handling."""
@@ -33,15 +33,6 @@ def evaluate_model(pipeline, X_test, y_test):
     except Exception as e:
         raise Exception(f"An error occurred during model evaluation: {e}")
     return report_df
-
-def save_classification_report(report_df, results_dir):
-    """Saves the classification report to a CSV file with error handling."""
-    try:
-        os.makedirs(results_dir, exist_ok=True)
-        report_filtered = report_df.loc[['0', '1', 'accuracy'], ['precision', 'recall', 'f1-score']]
-        report_filtered.to_csv(os.path.join(results_dir, "classification_report.csv"))
-    except Exception as e:
-        raise Exception(f"An error occurred while saving the classification report: {e}")
 
 @click.command()
 @click.option('--x-test', type=str, help="Path to the test features (CSV file)", required=True)
