@@ -63,6 +63,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
 
     create_dir_if_not_exist(preprocessor_to)
     pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
+    create_dir_if_not_exist(data_to)
     X_train_enc.to_csv(os.path.join(data_to, "X_train_transformed.csv"), index=False)
     X_test_enc.to_csv(os.path.join(data_to, "X_test_transformed.csv"), index=False)
     y_train.to_csv(os.path.join(data_to, "y_train.csv"), index=False)
