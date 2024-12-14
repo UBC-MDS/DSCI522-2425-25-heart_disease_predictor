@@ -79,7 +79,7 @@ def validate_csv_schema(file_path):
                 nullable=True
             ),
             "num_of_vessels": Column(
-                int,
+                float,
                 checks=[
                     Check(lambda s: np.isnan(s) | ((s >= 0) & (s <= 4)), element_wise=True),
                     Check(lambda s: s.isnull().sum() / len(s) <= 0.05, element_wise=False,
@@ -122,7 +122,7 @@ def validate_csv_schema(file_path):
             "exercise_induced_angina": pa.Column(pa.String),
             "st_depression": pa.Column(pa.Float),
             "slope": pa.Column(pa.String),
-            "num_of_vessels": pa.Column(pa.Int),
+            "num_of_vessels": pa.Column(pa.Float),
             "thalassemia": pa.Column(pa.String),
             "diagnosis": pa.Column(pa.Int)
         }

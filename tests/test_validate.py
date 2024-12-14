@@ -1,8 +1,12 @@
+# Ignoring warnings: The warnings are caused by deprecated features in the imported 
+# libraries (Jupyter, IPython, Deepchecks, and scikit-learn), 
+# and are not related to the functionality or code being tested here.
+import warnings
+warnings.filterwarnings("ignore")
+
 import pytest
 import pandas as pd
 import sys
-import requests
-from requests.exceptions import HTTPError
 import os
 import pandera as pa
 import numpy as np
@@ -22,7 +26,8 @@ MOCK_DATA = pd.DataFrame({
     "exercise_induced_angina": ["no", "yes", "no", "no", "yes", "no", "no"],
     "st_depression": [2.3, 3.1, 2.2, 3.0, 1.5, 2.6, 2.9],
     "slope": ["flat", "downsloping", "flat", "upsloping", "upsloping", "flat", "downsloping"],
-    "num_of_vessels": [2, 3, 1, 0, 0, 1, 0],
+    # original dataset's dtpye is float; unless fixed in the future, validate_data.py and test_validate.py would expect num_of_vessles to be float
+    "num_of_vessels": [2.0, 3.0, 1.0, 0.0, 0.0, 1.0, 0.0], 
     "thalassemia": ["fixed defect", "reversable defect", "normal", "fixed defect", "fixed defect", "reversable defect", "fixed defect"],
     "diagnosis": [1, 1, 1, 0, 1, 0, 0]
 })
