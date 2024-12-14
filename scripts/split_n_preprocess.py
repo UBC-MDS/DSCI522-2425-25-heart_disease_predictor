@@ -6,6 +6,10 @@ from sklearn.model_selection import train_test_split
 import pickle
 import os
 import click
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
+from create_dir_if_not_exist import create_dir_if_not_exist
 
 @click.command()
 @click.option('--raw-data', type=str, help="Path to raw data")
@@ -57,27 +61,14 @@ def main(raw_data, data_to, preprocessor_to, seed):
     X_train_enc = pd.DataFrame(preprocessor.fit_transform(X_train), columns=preprocessor.get_feature_names_out())
     X_test_enc = pd.DataFrame(preprocessor.transform(X_test), columns=preprocessor.get_feature_names_out())
 
-    try:
-        pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
-    except: 
-        os.makedirs(preprocessor_to)
-        pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
-
-    try:
-        X_train_enc.to_csv(os.path.join(data_to, "X_train_transformed.csv"), index=False)
-        X_test_enc.to_csv(os.path.join(data_to, "X_test_transformed.csv"), index=False)
-        y_train.to_csv(os.path.join(data_to, "y_train.csv"), index=False)
-        y_test.to_csv(os.path.join(data_to, "y_test.csv"), index=False)
-        X_train.to_csv(os.path.join(data_to, "X_train.csv"), index=False)
-        X_test.to_csv(os.path.join(data_to, "X_test.csv"), index=False)
-    except: 
-        os.makedirs(data_to)
-        X_train_enc.to_csv(os.path.join(data_to, "X_train_transformed.csv"), index=False)
-        X_test_enc.to_csv(os.path.join(data_to, "X_test_transformed.csv"), index=False)
-        y_train.to_csv(os.path.join(data_to, "y_train.csv"), index=False)
-        y_test.to_csv(os.path.join(data_to, "y_test.csv"), index=False)
-        X_train.to_csv(os.path.join(data_to, "X_train.csv"), index=False)
-        X_test.to_csv(os.path.join(data_to, "X_test.csv"), index=False)
+    create_dir_if_not_exist(preprocessor_to)
+    pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "preprocessor.pickle"), "wb"))
+    X_train_enc.to_csv(os.path.join(data_to, "X_train_transformed.csv"), index=False)
+    X_test_enc.to_csv(os.path.join(data_to, "X_test_transformed.csv"), index=False)
+    y_train.to_csv(os.path.join(data_to, "y_train.csv"), index=False)
+    y_test.to_csv(os.path.join(data_to, "y_test.csv"), index=False)
+    X_train.to_csv(os.path.join(data_to, "X_train.csv"), index=False)
+    X_test.to_csv(os.path.join(data_to, "X_test.csv"), index=False)
     
 
 if __name__ == '__main__':
