@@ -60,7 +60,9 @@ python -m pytest tests/test_save_classification_report.py
 
 Or if you want to run them all at once, in the root folder enter:
 
-```pytest```
+```
+pytest
+```
 
 
 #### Clean up
