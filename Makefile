@@ -85,8 +85,8 @@ ${MODEL_DIR}/logistic_regression.pkl \
 ${TBL_DIR}/logistic_regression/logistic_regression_confusion_matrix.png \
 ${TBL_DIR}/logistic_regression/logistic_regression_cv_results.csv \
 ${TBL_DIR}/logistic_regression/logreg_coefficients.csv \
-${TBL_DIR}/logistic_regression/logreg_coefficients.png : scripts/fit_heart_disease_predictor.py
-	python scripts/fit_heart_disease_predictor.py \
+${TBL_DIR}/logistic_regression/logreg_coefficients.png : scripts/fit_model.py
+	python scripts/fit_model.py \
 	--x-train=${PROC_DIR}/X_train_transformed.csv \
 	--y-train=${PROC_DIR}/y_train.csv \
 	--model=logistic_regression \
@@ -96,8 +96,8 @@ ${TBL_DIR}/logistic_regression/logreg_coefficients.png : scripts/fit_heart_disea
 # Fit the decision tree model and generate data and figures
 ${MODEL_DIR}/decision_tree.pkl \
 ${TBL_DIR}/decision_tree/decision_tree_confusion_matrix.png \
-${TBL_DIR}/decision_tree/decision_tree_cv_results.csv : scripts/fit_heart_disease_predictor.py
-	python scripts/fit_heart_disease_predictor.py \
+${TBL_DIR}/decision_tree/decision_tree_cv_results.csv : scripts/fit_model.py
+	python scripts/fit_model.py \
 	--x-train=${PROC_DIR}/X_train_transformed.csv \
 	--y-train=${PROC_DIR}/y_train.csv \
 	--model=decision_tree \
@@ -109,16 +109,16 @@ ${TBL_DIR}/decision_tree/decision_tree_cv_results.csv : scripts/fit_heart_diseas
 evals: ${TBL_DIR}/decision_tree/classification_report.csv ${TBL_DIR}/logistic_regression/classification_report.csv
 
 # Generate classification report for Decision Tree
-${TBL_DIR}/decision_tree/classification_report.csv : scripts/evaluate_heart_disease_predictor.py
-	python scripts/evaluate_heart_disease_predictor.py \
+${TBL_DIR}/decision_tree/classification_report.csv : scripts/evaluate_model.py
+	python scripts/evaluate_model.py \
 	--x-test=${PROC_DIR}/X_test_transformed.csv \
 	--y-test=${PROC_DIR}/y_test.csv \
 	--pipeline-from=${MODEL_DIR}/decision_tree.pkl \
 	--results-to=${TBL_DIR}/decision_tree
 
 # Generate classification report for Logistic Regression
-${TBL_DIR}/logistic_regression/classification_report.csv : scripts/evaluate_heart_disease_predictor.py
-	python scripts/evaluate_heart_disease_predictor.py \
+${TBL_DIR}/logistic_regression/classification_report.csv : scripts/evaluate_model.py
+	python scripts/evaluate_model.py \
 	--x-test=${PROC_DIR}/X_test_transformed.csv \
 	--y-test=${PROC_DIR}/y_test.csv \
 	--pipeline-from=${MODEL_DIR}/logistic_regression.pkl \
