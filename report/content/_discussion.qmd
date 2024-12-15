@@ -22,12 +22,11 @@ a more reliable model for predicting heart disease, with fewer issues related to
 
 #### Key Predictive Features for Heart Disease
 
-An essential objective of this analysis was to identify the most significant features for predicting the presence of heart disease. 
-The logistic regression model, due to its interpretability, proved particularly useful in uncovering key predictors. 
-From the model coefficients, it was clear that the type of chest pain, the slope of the peak exercise ST segment, 
-and the number of vessels colored by fluoroscopy were the most influential features in predicting heart disease. 
-These findings align with clinical knowledge, where symptoms such as chest pain and certain imaging results 
-(such as the number of blocked vessels) are critical indicators of cardiovascular risk.
+The analysis aimed to identify key features for predicting heart disease. 
+The logistic regression model highlighted chest pain type, 
+peak exercise ST segment slope, and the number of vessels colored by fluoroscopy as the most influential predictors. 
+These findings align with clinical knowledge, where chest pain and imaging results, like blocked vessels, 
+are crucial indicators of cardiovascular risk.
 
 The decision tree model also provided insights into important features, but its black-box nature made interpretation more challenging. 
 Nevertheless, both models pointed to chest pain type and other cardiovascular factors as essential for clinical decision-making, 

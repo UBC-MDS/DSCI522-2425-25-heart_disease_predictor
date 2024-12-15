@@ -60,21 +60,21 @@ Below is a detailed description of each cleaning task performed:
 ## Cleaned Dataset
    This dataset (@tbl-cleanedTable) will be used onwards for all analysis.
 
-   | Variable Name            | Role     | Type        | Description                                        | Units          | Missing Values |
-   |--------------------------|----------|-------------|----------------------------------------------------|----------------|----------------|
-   | age                      | Feature  | Integer     | Age of the patient in years                        | years          | no             |
-   | sex                      | Feature  | Categorical | Male/Female                                        |                | no             |
-   | chest_pain_type          | Feature  | Categorical | Chest pain type: [typical angina, atypical angina, non-anginal, asymptomatic] |                | no             |
-   | resting_blood_pressure   | Feature  | Integer     | Resting blood pressure (in mm Hg on admission to the hospital) | mm Hg          | no             |
-   | cholesterol              | Feature  | Integer     | Serum cholesterol in mg/dl                         | mg/dl          | no             |
-   | fasting_blood_sugar      | Feature  | Categorical | If fasting blood sugar > 120 mg/dl                 |                | no             |
-   | rest_ecg                 | Feature  | Categorical | Resting electrocardiographic results: [normal, stt abnormality, lv hypertrophy] |                | no             |
-   | max_heart_rate           | Feature  | Integer     | Maximum heart rate achieved                        | bpm            | no             |
-   | exercise_induced_angina  | Feature  | Categorical | Exercise-induced angina (True/False)               |                | no             |
-   | st_depression            | Feature  | Integer     | ST depression induced by exercise relative to rest |                | no             |
-   | slope                    | Feature  | Categorical | The slope of the peak exercise ST segment          |                | no             |
-   | num_of_vessels           | Feature  | Integer     | Number of major vessels (0-3) colored by fluoroscopy|                | no             |
-   | thalassemia              | Feature  | Categorical | Thalassemia: [normal, fixed defect, reversible defect] |                | no             |
-   | diagnosis                | Target   | Categorical | Predicted attribute (1 = presence of heart disease, 0 = absence) |                | no             |
+   | Variable Name                     | Role     | Type            | Description                                        | Units          | Missing Values |
+   |-----------------------------------|----------|-----------------|----------------------------------------------------|----------------|----------------|
+   | age                               | Feature  | Integer         | Age of the patient in years                        | years          | no             |
+   | sex                               | Feature  | Categorical     | Male/Female                                        |                | no             |
+   | chest_pain_type                   | Feature  | Categorical     | Chest pain type: [typical angina, atypical angina, non-anginal, asymptomatic] |                | no             |
+   | resting_blood_pressure            | Feature  | Integer         | Resting blood pressure (in mm Hg on admission to the hospital) | mm Hg          | no             |
+   | cholesterol                       | Feature  | Integer         | Serum cholesterol in mg/dl                         | mg/dl          | no             |
+   | fasting_blood_sugar               | Feature  | Categorical     | If fasting blood sugar > 120 mg/dl                 |                | no             |
+   | rest_ecg                          | Feature  | Categorical     | Resting electrocardiographic results: [normal, stt abnormality, lv hypertrophy] |                | no             |
+   | max_heart_rate                    | Feature  | Integer         | Maximum heart rate achieved                        | bpm            | no             |
+   | exercise_induced_angina           | Feature  | Categorical     | Exercise-induced angina (True/False)               |                | no             |
+   | st_depression                     | Feature  | Integer         | ST depression induced by exercise relative to rest |                | no             |
+   | slope                             | Feature  | Categorical     | The slope of the peak exercise ST segment          |                | no             |
+   | num_of_vessels                    | Feature  | Integer         | Number of major vessels (0-3) colored by fluoroscopy|                | no             |
+   | thalassemia                       | Feature  | Categorical     | Thalassemia: [normal, fixed defect, reversible defect] |                | no             |
+   | diagnosis                         | Target   | Categorical     | Predicted attribute (1 = presence of heart disease, 0 = absence) |                | no             |
 
    : Cleaned Table {#tbl-cleanedTable}

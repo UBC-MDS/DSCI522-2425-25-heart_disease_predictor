@@ -60,7 +60,7 @@ personalized and effective prevention strategies for their patients.
 
 # Data
 
-The data was downloaded using [@ucimlrepo]
+The data was downloaded using ucimlrepo package [@ucimlrepo].
 
 ## Data Description
 

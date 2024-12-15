@@ -3086,20 +3086,15 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#procedures" id="toc-procedures" class="nav-link" data-scroll-target="#procedures">Procedures</a>
-  <ul class="collapse">
-  <li><a href="#evaluation-metric-f1-score" id="toc-evaluation-metric-f1-score" class="nav-link" data-scroll-target="#evaluation-metric-f1-score">Evaluation Metric: F1 Score</a></li>
-  <li><a href="#model-training-and-validation-approach" id="toc-model-training-and-validation-approach" class="nav-link" data-scroll-target="#model-training-and-validation-approach">Model Training and Validation Approach</a></li>
-  <li><a href="#tools-and-libraries-used-for-analysis" id="toc-tools-and-libraries-used-for-analysis" class="nav-link" data-scroll-target="#tools-and-libraries-used-for-analysis">Tools and Libraries Used for Analysis</a></li>
-  </ul></li>
+  <li><a href="#procedures" id="toc-procedures" class="nav-link" data-scroll-target="#procedures">Procedures</a></li>
   <li><a href="#eda" id="toc-eda" class="nav-link" data-scroll-target="#eda">EDA</a></li>
   <li><a href="#model-results" id="toc-model-results" class="nav-link" data-scroll-target="#model-results">Model Results</a>
   <ul class="collapse">
   <li><a href="#decision-tree-cross-validation-results" id="toc-decision-tree-cross-validation-results" class="nav-link" data-scroll-target="#decision-tree-cross-validation-results">Decision Tree: Cross-Validation Results</a></li>
-  <li><a href="#decision-tree-final-results" id="toc-decision-tree-final-results" class="nav-link" data-scroll-target="#decision-tree-final-results">Decision Tree: Final Results</a></li>
+  <li><a href="#decision-tree-test-results" id="toc-decision-tree-test-results" class="nav-link" data-scroll-target="#decision-tree-test-results">Decision Tree: Test Results</a></li>
   <li><a href="#logistic-regression-cross-validation-results" id="toc-logistic-regression-cross-validation-results" class="nav-link" data-scroll-target="#logistic-regression-cross-validation-results">Logistic Regression: Cross-Validation Results</a></li>
   <li><a href="#logistic-regression-coefficients" id="toc-logistic-regression-coefficients" class="nav-link" data-scroll-target="#logistic-regression-coefficients">Logistic Regression: Coefficients</a></li>
-  <li><a href="#logistic-regression-final-results" id="toc-logistic-regression-final-results" class="nav-link" data-scroll-target="#logistic-regression-final-results">Logistic Regression: Final Results</a></li>
+  <li><a href="#logistic-regression-test-results" id="toc-logistic-regression-test-results" class="nav-link" data-scroll-target="#logistic-regression-test-results">Logistic Regression: Test Results</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
@@ -3158,7 +3153,7 @@ vertical-align: -.125em;
 </section>
 <section id="data" class="level1">
 <h1>Data</h1>
-<p>The data was downloaded using <span class="citation" data-cites="ucimlrepo">(<a href="#ref-ucimlrepo" role="doc-biblioref">Contributors 2024</a>)</span></p>
+<p>The data was downloaded using ucimlrepo package <span class="citation" data-cites="ucimlrepo">(<a href="#ref-ucimlrepo" role="doc-biblioref">Contributors 2024</a>)</span>.</p>
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
 <p>The dataset used in this project is UCI Heart Disease dataset consisting of 303 patients records <span class="citation" data-cites="heart_disease_45">(<a href="#ref-heart_disease_45" role="doc-biblioref">Janosi and Detrano 1989</a>)</span>. The data was collected from 425 patients undergoing angiography at the Hungarian Institute of Cardiology in Budapest, Hungary <span class="citation" data-cites="Detrano1989InternationalAO">(<a href="#ref-Detrano1989InternationalAO" role="doc-biblioref">Detrano et al. 1989</a>)</span>. The dataset is anonymized to protect patient privacy and includes 13 features that provide valuable insights into an individual’s health status. Our target/response variable is <code>diagnosis</code>.</p>
@@ -3310,12 +3305,12 @@ Table 2: Cleaned Table
 <div aria-describedby="tbl-cleanedTable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 7%">
-<col style="width: 9%">
-<col style="width: 39%">
-<col style="width: 12%">
-<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 6%">
+<col style="width: 11%">
+<col style="width: 35%">
+<col style="width: 10%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -3452,22 +3447,16 @@ Table 2: Cleaned Table
 <h1>Methods</h1>
 <section id="procedures" class="level2">
 <h2 class="anchored" data-anchor-id="procedures">Procedures</h2>
-<section id="evaluation-metric-f1-score" class="level3">
-<h3 class="anchored" data-anchor-id="evaluation-metric-f1-score">Evaluation Metric: F1 Score</h3>
+<p><strong>Evaluation Metric: F1 Score</strong></p>
 <p>In this study, we chose the F1 score as our primary evaluation metric for the performance of the predictive model, instead of using recall alone. The decision to use F1 score stems from the importance of balancing both false positives and false negatives in the context of heart disease detection.</p>
 <p>While false negatives (missed diagnoses of patients with actual heart disease) are critical, as they may lead to serious consequences such as delayed treatment and even death, false positives are also of significant concern. A false positive in this context refers to a patient being incorrectly diagnosed with heart disease, which may result in unnecessary additional tests, procedures, and treatments. These can be not only expensive but also stressful and potentially harmful to patients.</p>
 <p>By using the F1 score, which is the harmonic mean of precision and recall, we aim to achieve a balance between minimizing both false positives and false negatives. This approach ensures that the model not only identifies as many true heart disease cases as possible (high recall) but also avoids the over-diagnosis of patients who do not have heart disease (high precision). In doing so, the F1 score provides a more comprehensive evaluation of the model’s performance, considering the trade-offs between these two types of errors in healthcare.</p>
-</section>
-<section id="model-training-and-validation-approach" class="level3">
-<h3 class="anchored" data-anchor-id="model-training-and-validation-approach">Model Training and Validation Approach</h3>
+<p><strong>Model Training and Validation Approach</strong></p>
 <p>For model evaluation, we employed a 70:30 train-test split, where 70% of the data was used for training the model, and the remaining 30% was reserved for testing. This partition ensures that the model is trained on a sufficient amount of data while allowing for a robust evaluation of its performance on unseen data.</p>
 <p>Additionally, to further enhance the reliability of our results, we utilized cross-validation during the training process. Specifically, we performed k-fold cross-validation to compute the average performance across multiple train/validation splits. This approach helps mitigate the risk of overfitting by ensuring that the model is evaluated on different subsets of the training data, leading to a more generalized performance estimate. The average scores across these folds were used to assess the model’s effectiveness and consistency in making predictions.</p>
-</section>
-<section id="tools-and-libraries-used-for-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="tools-and-libraries-used-for-analysis">Tools and Libraries Used for Analysis</h3>
+<p><strong>Tools and Libraries Used for Analysis</strong></p>
 <p>The Python programming language <span class="citation" data-cites="Python">(<a href="#ref-Python" role="doc-biblioref">Van Rossum and Drake 2009</a>)</span> and the following Python packages were used to perform the analysis: pandas <span class="citation" data-cites="reback2020pandas">(<a href="#ref-reback2020pandas" role="doc-biblioref">team 2020</a>)</span>, scikit-learn <span class="citation" data-cites="scikitLearn">(<a href="#ref-scikitLearn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span>, pandera <span class="citation" data-cites="niels_bantilan">(<a href="#ref-niels_bantilan" role="doc-biblioref">Bantilan 2020</a>)</span>, pip <span class="citation" data-cites="pip">(<a href="#ref-pip" role="doc-biblioref">pypa 2024</a>)</span>, pandas <span class="citation" data-cites="pandas">(<a href="#ref-pandas" role="doc-biblioref">team 2024</a>)</span>, ipykernel <span class="citation" data-cites="ipykernel">(<a href="#ref-ipykernel" role="doc-biblioref">Ip. D. Team 2024</a>)</span>, conda <span class="citation" data-cites="nb_conda_kernels">(<a href="#ref-nb_conda_kernels" role="doc-biblioref">Anaconda 2024</a>)</span>, matplotlib <span class="citation" data-cites="matplotlib">(<a href="#ref-matplotlib" role="doc-biblioref">M. D. Team 2024</a>)</span>, requests <span class="citation" data-cites="requests">(<a href="#ref-requests" role="doc-biblioref">Reitz 2024</a>)</span>, seaborn <span class="citation" data-cites="seaborn">(<a href="#ref-seaborn" role="doc-biblioref">S. Developers 2024</a>)</span>, quarto <span class="citation" data-cites="quarto">(<a href="#ref-quarto" role="doc-biblioref">Q. Developers 2024</a>)</span>, click <span class="citation" data-cites="click">(<a href="#ref-click" role="doc-biblioref">Ronacher 2024</a>)</span>, tabulate <span class="citation" data-cites="tabulate">(<a href="#ref-tabulate" role="doc-biblioref">Moore 2024</a>)</span>, make <span class="citation" data-cites="make">(<a href="#ref-make" role="doc-biblioref">Foundation 2024</a>)</span>, deepchecks <span class="citation" data-cites="deepchecks">(<a href="#ref-deepchecks" role="doc-biblioref">Deepchecks 2024</a>)</span>, pytest <span class="citation" data-cites="pytest">(<a href="#ref-pytest" role="doc-biblioref">pytest-dev 2024</a>)</span>.</p>
 <!-- EDA Section -->
-</section>
 </section>
 <section id="eda" class="level2">
 <h2 class="anchored" data-anchor-id="eda">EDA</h2>
@@ -3510,6 +3499,7 @@ Figure 3: Feature Densities by Diagnosis
 </section>
 <section id="model-results" class="level2">
 <h2 class="anchored" data-anchor-id="model-results">Model Results</h2>
+<p>In this analysis, the performance of the Decision Tree and Logistic Regression models is evaluated through cross-validation and test set results.</p>
 <section id="decision-tree-cross-validation-results" class="level3">
 <h3 class="anchored" data-anchor-id="decision-tree-cross-validation-results">Decision Tree: Cross-Validation Results</h3>
 <div class="cell" data-execution_count="2">
@@ -3519,7 +3509,7 @@ Figure 3: Feature Densities by Diagnosis
 Table 3: Cross-validation results of Decision Tree Model
 </figcaption>
 <div aria-describedby="tbl-dst_cv_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -3531,12 +3521,12 @@ Table 3: Cross-validation results of Decision Tree Model
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">fit_time</td>
-<td style="text-align: right;">0.003</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">score_time</td>
-<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.006</td>
 <td style="text-align: right;">0.001</td>
 </tr>
 <tr class="odd">
@@ -3586,6 +3576,7 @@ Table 3: Cross-validation results of Decision Tree Model
 </figure>
 </div>
 </div>
+<p>Cross-validation results show a high train accuracy of 1, indicating perfect fit on the training data, with a test accuracy of 0.74, suggesting good generalization. The model exhibits a precision of 0.709, recall of 0.737, and an F1-score of 0.718 on the test set, with relatively low variability (standard deviations of 0.059, 0.069, and 0.079, respectively). These results indicate a reasonable trade-off between precision and recall.</p>
 <div id="fig-conf-m-dt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-conf-m-dt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3596,17 +3587,18 @@ Figure 4: Confusion Matrix of Decision Tree Model
 </figcaption>
 </figure>
 </div>
+<p>Confusion matrix reveals a higher number of false positives (29) compared to false negatives (25), indicating some misclassification of the negative class (0).</p>
 </section>
-<section id="decision-tree-final-results" class="level3">
-<h3 class="anchored" data-anchor-id="decision-tree-final-results">Decision Tree: Final Results</h3>
+<section id="decision-tree-test-results" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree-test-results">Decision Tree: Test Results</h3>
 <div class="cell" data-execution_count="3">
 <div id="tbl-dst_model_results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dst_model_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 4: Final results of Decision Tree Model
+Table 4: Test results of Decision Tree Model
 </figcaption>
 <div aria-describedby="tbl-dst_model_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -3642,6 +3634,7 @@ Table 4: Final results of Decision Tree Model
 </figure>
 </div>
 </div>
+<p>Test results show balanced performance across classes, with precision for class 0 (0.727) and class 1 (0.771), and F1-scores of 0.777 and 0.701 for class 0 and 1, respectively. The model’s overall accuracy is 0.744.</p>
 </section>
 <section id="logistic-regression-cross-validation-results" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-cross-validation-results">Logistic Regression: Cross-Validation Results</h3>
@@ -3652,7 +3645,7 @@ Table 4: Final results of Decision Tree Model
 Table 5: Cross-Validation results of Logistic Regression Model
 </figcaption>
 <div aria-describedby="tbl-lg_cv_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -3664,13 +3657,13 @@ Table 5: Cross-Validation results of Logistic Regression Model
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">fit_time</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.005</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">score_time</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">0.003</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">test_accuracy</td>
@@ -3719,6 +3712,7 @@ Table 5: Cross-Validation results of Logistic Regression Model
 </figure>
 </div>
 </div>
+<p>Cross-validation results show strong performance with a test accuracy of 0.826 and train accuracy of 0.873. The model’s test precision (0.822), recall (0.8), and F1-score (0.809) demonstrate a balance between precision and recall, with a slightly higher train performance. The standard deviations indicate minimal variability in performance across the folds.</p>
 <div id="fig-conf-m-lg" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-conf-m-lg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3729,6 +3723,7 @@ Figure 5: Confusion Matrix of Logistic Regression Model
 </figcaption>
 </figure>
 </div>
+<p>Confusion matrix indicates good performance with fewer false positives (17) compared to false negatives (19) for the positive class.</p>
 </section>
 <section id="logistic-regression-coefficients" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-coefficients">Logistic Regression: Coefficients</h3>
@@ -3742,17 +3737,18 @@ Figure 6: Coefficients of Logistic Regression Model
 </figcaption>
 </figure>
 </div>
+<p>The coefficients of the Logistic Regression model reflect the impact of each feature on the likelihood of a positive outcome, with positive coefficients indicating an increased likelihood and negative coefficients indicating a decreased likelihood. For example, features like <code>chest_pain_type_asymptomatic</code> (1.18), <code>thalassemia_reversable defect</code> (0.97), and <code>num_of_vessels_2.0</code> (0.91) are positively associated with the likelihood of heart disease, meaning that higher values of these features increase the chances of a positive outcome. In contrast, features such as <code>num_of_vessels_0.0</code> (-1.26), <code>chest_pain_type_non-anginal pain</code> (-0.93), and <code>thalassemia_normal</code> (-0.58) show a negative relationship, meaning they decrease the likelihood of heart disease. The coefficients for scaled features like <code>age</code>, <code>cholesterol</code>, and <code>resting_blood_pressure</code> (e.g., 0.34 for <code>cholesterol</code>) indicate their contribution to the prediction, with the magnitude of the coefficient reflecting the strength of their influence on the model’s outcome. Features with larger absolute coefficient values, such as <code>num_of_vessels_0.0</code> and <code>chest_pain_type_asymptomatic</code>, have a more significant impact on the model’s prediction.</p>
 </section>
-<section id="logistic-regression-final-results" class="level3">
-<h3 class="anchored" data-anchor-id="logistic-regression-final-results">Logistic Regression: Final Results</h3>
+<section id="logistic-regression-test-results" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-test-results">Logistic Regression: Test Results</h3>
 <div class="cell" data-execution_count="5">
 <div id="tbl-lg_model_results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lg_model_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 6: Final results of Logistic Regression Model
+Table 6: Test results of Logistic Regression Model
 </figcaption>
 <div aria-describedby="tbl-lg_model_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="15">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -3788,6 +3784,7 @@ Table 6: Final results of Logistic Regression Model
 </figure>
 </div>
 </div>
+<p>Test results show that Logistic Regression outperforms the Decision Tree in terms of overall accuracy (0.844). For precision and recall, class 0 achieves precision of 0.827 and recall of 0.896, while class 1 has precision of 0.868 and recall of 0.786, leading to an F1-score of 0.86 for class 0 and 0.825 for class 1.</p>
 <!-- Discussion Section -->
 </section>
 </section>
@@ -3804,7 +3801,7 @@ Table 6: Final results of Logistic Regression Model
 </section>
 <section id="key-predictive-features-for-heart-disease" class="level4">
 <h4 class="anchored" data-anchor-id="key-predictive-features-for-heart-disease">Key Predictive Features for Heart Disease</h4>
-<p>An essential objective of this analysis was to identify the most significant features for predicting the presence of heart disease. The logistic regression model, due to its interpretability, proved particularly useful in uncovering key predictors. From the model coefficients, it was clear that the type of chest pain, the slope of the peak exercise ST segment, and the number of vessels colored by fluoroscopy were the most influential features in predicting heart disease. These findings align with clinical knowledge, where symptoms such as chest pain and certain imaging results (such as the number of blocked vessels) are critical indicators of cardiovascular risk.</p>
+<p>The analysis aimed to identify key features for predicting heart disease. The logistic regression model highlighted chest pain type, peak exercise ST segment slope, and the number of vessels colored by fluoroscopy as the most influential predictors. These findings align with clinical knowledge, where chest pain and imaging results, like blocked vessels, are crucial indicators of cardiovascular risk.</p>
 <p>The decision tree model also provided insights into important features, but its black-box nature made interpretation more challenging. Nevertheless, both models pointed to chest pain type and other cardiovascular factors as essential for clinical decision-making, confirming their relevance in the prediction of heart disease.</p>
 </section>
 <section id="predictive-capability-for-patient-diagnosis" class="level4">
