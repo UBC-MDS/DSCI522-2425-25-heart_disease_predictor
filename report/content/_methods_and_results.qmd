@@ -1,2 +1,41 @@
-# Methods & Results
-For an in-depth discussion of the tables and figures depicted in this section, please refer to [Discussion](#discussion)
+# Methods
+
+## Procedures
+
+**Evaluation Metric: F1 Score**
+
+In this study, we chose the F1 score as our primary evaluation metric for the performance of the predictive model, 
+instead of using recall alone. The decision to use F1 score stems from the importance of balancing both false positives 
+and false negatives in the context of heart disease detection.
+
+While false negatives (missed diagnoses of patients with actual heart disease) are critical, as they may lead to serious 
+consequences such as delayed treatment and even death, false positives are also of significant concern. A false positive in 
+this context refers to a patient being incorrectly diagnosed with heart disease, which may result in unnecessary additional tests, 
+procedures, and treatments. These can be not only expensive but also stressful and potentially harmful to patients.
+
+By using the F1 score, which is the harmonic mean of precision and recall, we aim to achieve a balance between minimizing both 
+false positives and false negatives. This approach ensures that the model not only identifies as many true heart disease cases 
+as possible (high recall) but also avoids the over-diagnosis of patients who do not have heart disease (high precision). 
+In doing so, the F1 score provides a more comprehensive evaluation of the model’s performance, considering the 
+trade-offs between these two types of errors in healthcare.
+
+**Model Training and Validation Approach**
+
+For model evaluation, we employed a 70:30 train-test split, where 70% of the data was used for training the model, 
+and the remaining 30% was reserved for testing. This partition ensures that the model is trained on a sufficient 
+amount of data while allowing for a robust evaluation of its performance on unseen data.
+
+Additionally, to further enhance the reliability of our results, we utilized cross-validation during the training process. 
+Specifically, we performed k-fold cross-validation to compute the average performance across multiple train/validation splits. 
+This approach helps mitigate the risk of overfitting by ensuring that the model is evaluated on different subsets of the training data, 
+leading to a more generalized performance estimate. The average scores across these folds were used to assess the model's effectiveness 
+and consistency in making predictions.
+
+**Tools and Libraries Used for Analysis**
+
+The Python programming language [@Python] and the following Python packages were used to perform the analysis: 
+pandas [@reback2020pandas], scikit-learn [@scikitLearn], pandera [@niels_bantilan],
+pip [@pip], pandas [@pandas], ipykernel [@ipykernel], conda [@nb_conda_kernels],
+matplotlib [@matplotlib], requests [@requests], seaborn [@seaborn], quarto [@quarto], 
+click [@click], tabulate [@tabulate], make [@make], deepchecks [@deepchecks],
+pytest [@pytest].

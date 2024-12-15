@@ -60,7 +60,7 @@ personalized and effective prevention strategies for their patients.
 
 # Data
 
-The Python programming language [@Python] and the following Python packages were used to perform the analysis: pandas [@reback2020pandas], scikit-learn [@scikitLearn], pandera [@niels_bantilan]. 
+The data was downloaded using ucimlrepo package [@ucimlrepo].
 
 ## Data Description
 
