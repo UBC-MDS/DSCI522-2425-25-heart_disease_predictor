@@ -12,7 +12,9 @@
 
 ---
 
-In general, all feedback from Milestones and most from peer review were addressed in fixes. A minority few from peer reviews were addressed by explaining our rationale for we didn't follow their suggestions. These specific explanations each have their own GitHub Issues and are linked to within their respective bullet point below.
+In general, all feedback from Milestones and most from peer review were addressed in fixes. A minority few from peer reviews were addressed by explaining our rationale for we didn't follow their suggestions. These specific explanations each have their own GitHub Issues and are linked to within their respective bullet point below. 
+
+*Note: Some fixes may have been addressed together in one big PR*
 
 ## Feedback Fixes, Commits, and Pull Requests
 
@@ -72,6 +74,25 @@ In general, all feedback from Milestones and most from peer review were addresse
     - [This PR](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor/pull/79)
     - [This PR](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor/pull/84)
     - [This PR](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor/pull/83)
+
+---
+
+### Milestone 1 Specific Feedback:
+
+#### The below 6 are all addressed in [this PR](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor/pull/51)
+
+- Add proper email to code of conduct
+- Remove .ds_store file
+- Discuss importance/limitation of findings in Abstract/summary
+- Clearly identify question in introduction
+- Add all references to the dataset in Introduction
+- More clearly define target/response variable in Introduction
+
+#### The below 3 are all addressed in [this PR](https://github.com/UBC-MDS/DSCI522-2425-25-heart_disease_predictor/pull/89)
+
+- Important methodology descriptions missing (e.g., did not explain in narrative what metric was being used for model parameter optimization)
+- Some important results not displayed
+- Findings from project need to be linked back to application domain and questions
 
 ---
 
