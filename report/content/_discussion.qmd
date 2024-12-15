@@ -1,20 +1,70 @@
 # Discussion
 
-## Summary of Findings: 
+### Results
 
-In this project, logistic regression and decision tree models were applied to classify individuals based on their likelihood of having heart disease. Both models successfully predicted heart disease diagnoses, with logistic regression outperforming decision trees in terms of interpretability and precision-recall performance.
+This analysis aimed to evaluate the accuracy and interpretability of machine learning models in predicting heart disease. 
+Specifically, we sought to determine the (1) overall accuracy of classification models, (2) identify key predictive features, 
+and (3) assess the ability of these models to predict the likelihood of a patient developing heart disease based on health indicators 
+and demographic factors.
 
-The decision tree model  (@tbl-dst_model_results) achieved an accuracy of `{python} dt_accuracy`%, with a precision of `{python} dt_precision_class_0`% and recall of `{python} dt_recall_class_0`% for class 0, and a precision of `{python} dt_precision_class_1`% and recall of `{python} dt_recall_class_1`% for class 1. Its cross-validation results (@tbl-dst_cv_results) indicate potential overfitting, as training accuracy reached `{python} dt_train_accuracy_cv`%, while test accuracy was `{python} dt_test_accuracy_cv` %. The confusion matrix (@fig-conf-m-dt) highlighted a reasonable balance between correctly classified positives and negatives. However, the results of both false positives and false negatives indicates that the model's generalization could be improved.
+#### Overall Accuracy of the Classification Models
 
+Both the logistic regression and decision tree models demonstrated strong predictive capabilities. 
+The decision tree model achieved an accuracy of 73.33%, with a precision of 72.22% and recall of 81.25% 
+for class 0 (absence of heart disease) and a precision of 75.0% and recall of 64.29% for class 1 (presence of heart disease). 
+However, the decision tree model exhibited signs of potential overfitting, as indicated by the 100% training accuracy versus 
+a test accuracy of 72.5%, suggesting that it might not generalize well to unseen data.
 
-The logistic regression model(@tbl-lg_model_results), on the other hand, achieved higher overall performance with an accuracy of `{python} lg_accuracy`%. It demonstrated a balanced precision of `{python} lg_precision_class_0`% for class 0 and `{python} lg_precision_class_1`% for class 1, with recall values of `{python} lg_recall_class_0`% and `{python} lg_recall_class_1`%, respectively. The model's cross-validation results (@tbl-lg_cv_results) show that it generalizes well to unseen data without significant overfitting, with test accuracy at `{python} lg_test_accuracy_cv`% and training accuracy at `{python} lg_train_accuracy_cv`%. The confusion matrix (@fig-conf-m-lg) reflects strong model performance, mostly accurately classifying the majority of positive and negative cases. The occurrence of a few misclassifications indicates room for improvement, but overall, the model generalizes well. The logistic regression coefficients (@fig-coef-lg) further highlighted essential predictors, with features such as chest pain type, slope, and the number of vessels observed emerging as key indicators for clinical decision-making.
+In comparison, the logistic regression model outperformed the decision tree model, achieving an overall accuracy of 81.11%. 
+It exhibited balanced precision (78.18% for class 0 and 85.71% for class 1) and recall (89.58% for class 0 and 71.43% for class 1), 
+with a test accuracy of 87.5%, and a training accuracy of 89.6%. This higher performance suggests that logistic regression provides 
+a more reliable model for predicting heart disease, with fewer issues related to overfitting and better generalization to new data.
 
+#### Key Predictive Features for Heart Disease
+
+An essential objective of this analysis was to identify the most significant features for predicting the presence of heart disease. 
+The logistic regression model, due to its interpretability, proved particularly useful in uncovering key predictors. 
+From the model coefficients, it was clear that the type of chest pain, the slope of the peak exercise ST segment, 
+and the number of vessels colored by fluoroscopy were the most influential features in predicting heart disease. 
+These findings align with clinical knowledge, where symptoms such as chest pain and certain imaging results 
+(such as the number of blocked vessels) are critical indicators of cardiovascular risk.
+
+The decision tree model also provided insights into important features, but its black-box nature made interpretation more challenging. 
+Nevertheless, both models pointed to chest pain type and other cardiovascular factors as essential for clinical decision-making, 
+confirming their relevance in the prediction of heart disease.
+
+#### Predictive Capability for Patient Diagnosis
+
+The ability to predict whether an individual might develop heart disease based on health indicators and demographic factors was 
+evaluated through both models. Logistic regression demonstrated a strong capability to predict the likelihood of heart disease, 
+with particularly high recall for the absence of heart disease (89.58%), meaning the model was effective in identifying healthy 
+individuals. Conversely, the decision tree model showed a more balanced performance but struggled to consistently predict class 1 
+(heart disease), as reflected by its lower recall (64.29%) for this group.
+
+Overall, the findings suggest that machine learning models, particularly logistic regression, hold promise for accurately 
+predicting heart disease diagnoses. However, there is still room for improvement in refining these models to reduce misclassifications, 
+especially in predicting the presence of heart disease.
+
+#### Implications for Clinical Application
+
+The findings of this analysis suggest that machine learning models, particularly logistic regression, 
+can be valuable tools in clinical decision-making for predicting heart disease. 
+Logistic regression demonstrated superior accuracy and interpretability, 
+making it suitable for use in clinical settings where understanding predictor-outcome relationships is crucial. 
+The identified key features, such as chest pain type and the number of blocked vessels, align with existing medical knowledge, 
+reinforcing their importance in diagnosing heart disease. While decision trees offer a visual representation of classification logic, 
+they require further refinement to improve generalization. Overall, these models show promise for enhancing early diagnosis and 
+risk assessment in patients, potentially supporting healthcare providers in making more informed decisions.
 
 
 
 ## Unexpected Findings: 
 
-While many features, such as chest pain type and maximum heart rate, had high predictive power, some features demonstrated lower importance than expected. For instance, fasting blood sugar, a commonly discussed indicator in cardiovascular health, showed limited contribution in our models. This finding suggests that some clinical attributes may have less direct influence on heart disease risk than traditionally assumed or that their impact might be context-dependent.
+While many features, such as chest pain type and maximum heart rate, had high predictive power, 
+some features demonstrated lower importance than expected. For instance, fasting blood sugar, 
+a commonly discussed indicator in cardiovascular health, showed limited contribution in our models. 
+This finding suggests that some clinical attributes may have less direct influence on heart disease risk than 
+traditionally assumed or that their impact might be context-dependent.
 
 
 ## Future Work: 

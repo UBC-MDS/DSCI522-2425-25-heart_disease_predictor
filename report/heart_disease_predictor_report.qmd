@@ -23,13 +23,13 @@ execute:
 
 {{< include content/_data_processing.qmd >}}
 
-<!-- EDA Section -->
-
-{{< include content/_eda.qmd >}}
-
 <!-- Methods and Results Section -->
 
 {{< include content/_methods_and_results.qmd >}}
+
+<!-- EDA Section -->
+
+{{< include content/_eda.qmd >}}
 
 <!-- Classification Analysis Section -->
 
