@@ -17,19 +17,22 @@ if 'Unnamed: 0' in dst_cv_results.columns:
 
 dt_test_accuracy_cv = round(dst_cv_results.loc[dst_cv_results[''] == 'test_accuracy', 'mean'].values[0] * 100, 2)
 dt_train_accuracy_cv = round(dst_cv_results.loc[dst_cv_results[''] == 'train_accuracy', 'mean'].values[0] * 100, 2)
+dt_test_recall_cv =  round(dst_cv_results.loc[dst_cv_results[''] == 'test_recall', 'mean'].values[0] * 100, 2)
+dt_test_precision_cv =  round(dst_cv_results.loc[dst_cv_results[''] == 'test_precision', 'mean'].values[0] * 100, 2)
+dt_test_f1_cv =  round(dst_cv_results.loc[dst_cv_results[''] == 'test_f1', 'mean'].values[0] * 100, 2)
 
 Markdown(dst_cv_results.to_markdown(index = False))
 ```
 
-Cross-validation results show a high train accuracy of 1, indicating perfect fit on the training data, with a test accuracy of 0.74, 
-suggesting good generalization. The model exhibits a precision of 0.709, recall of 0.737, and an F1-score of 0.718 on the test set, 
-with relatively low variability (standard deviations of 0.059, 0.069, and 0.079, respectively). 
-These results indicate a reasonable trade-off between precision and recall.
+Cross-validation results show a high train accuracy of 1, indicating perfect fit on the training data, with 
+a test accuracy of `{python} dt_test_accuracy_cv`%, suggesting good generalization. The model exhibits a precision of `{python} dt_test_precision_cv`%, 
+recall of `{python} dt_test_recall_cv`%, and an F1-score of `{python} dt_test_f1_cv`% on the test set, 
+with relatively low variability. These results indicate a reasonable trade-off between precision and recall.
 
 ![Confusion Matrix of Decision Tree Model](../results/tables/decision_tree/decision_tree_confusion_matrix.png){#fig-conf-m-dt}
 
-Confusion matrix reveals a higher number of false positives (29) compared to false negatives (25), 
-indicating some misclassification of the negative class (0).
+Confusion matrix reveals a higher number of false positives compared to false negatives, 
+indicating some misclassification of the negative class (target = 0).
 
 ### Decision Tree: Test Results
 
@@ -38,14 +41,20 @@ indicating some misclassification of the negative class (0).
 #| tbl-cap: "Test results of Decision Tree Model"
 dt_precision_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'precision'].values[0] * 100, 2)
 dt_recall_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'recall'].values[0] * 100, 2)
+dt_f1_class_0 = round(dst_model_results.loc[dst_model_results[''] == '0', 'f1-score'].values[0] * 100, 2)
+
 dt_precision_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'precision'].values[0] * 100, 2)
 dt_recall_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'recall'].values[0] * 100, 2)
+dt_f1_class_1 = round(dst_model_results.loc[dst_model_results[''] == '1', 'f1-score'].values[0] * 100, 2)
+
+dt_accuracy_test = round(dst_model_results.loc[dst_model_results[''] == 'accuracy', 'precision'].values[0] * 100, 2)
 
 Markdown(dst_model_results.to_markdown(index = False))
 ```
 
-Test results show balanced performance across classes, with precision for class 0 (0.727) and class 1 (0.771), 
-and F1-scores of 0.777 and 0.701 for class 0 and 1, respectively. The model's overall accuracy is 0.744.
+Test results show balanced performance across classes, with precision for class 0 (`{python} dt_precision_class_0`%) 
+and class 1 (`{python} dt_precision_class_1`%), and F1-scores of `{python} dt_f1_class_0`% and `{python} dt_f1_class_1`% 
+for class 0 and 1, respectively. The model's overall accuracy is `{python} dt_accuracy_test`%.
 
 ### Logistic Regression: Cross-Validation Results
 ```{python}
@@ -58,28 +67,40 @@ if 'Unnamed: 0' in lg_cv_results.columns:
 
 lg_test_accuracy_cv = round(lg_cv_results.loc[lg_cv_results[''] == 'test_accuracy', 'mean'].values[0] * 100, 2)
 lg_train_accuracy_cv = round(lg_cv_results.loc[lg_cv_results[''] == 'train_accuracy', 'mean'].values[0] * 100, 2)
+lg_test_recall_cv =  round(lg_cv_results.loc[lg_cv_results[''] == 'test_recall', 'mean'].values[0] * 100, 2)
+lg_test_precision_cv =  round(lg_cv_results.loc[lg_cv_results[''] == 'test_precision', 'mean'].values[0] * 100, 2)
+lg_test_f1_cv =  round(lg_cv_results.loc[lg_cv_results[''] == 'test_f1', 'mean'].values[0] * 100, 2)
 
 Markdown(lg_cv_results.to_markdown(index = False))
 ```
 
-Cross-validation results show strong performance with a test accuracy of 0.826 and train accuracy of 0.873. 
-The model's test precision (0.822), recall (0.8), and F1-score (0.809) demonstrate a balance between precision and recall, 
-with a slightly higher train performance. The standard deviations indicate minimal variability in performance across the folds.
+Cross-validation results show strong performance with a test accuracy of `{python} lg_test_accuracy_cv`% 
+and train accuracy of `{python} lg_train_accuracy_cv`%. 
+The model's test precision (`{python} lg_test_precision_cv`%), recall (`{python} lg_test_recall_cv`%), and F1-score (`{python} lg_test_f1_cv`%) 
+demonstrate a balance between precision and recall, with a slightly higher train performance. 
+The standard deviations indicate minimal variability in performance across the folds.
 
 ![Confusion Matrix of Logistic Regression Model](../results/tables/logistic_regression/logistic_regression_confusion_matrix.png){#fig-conf-m-lg}
 
-Confusion matrix indicates good performance with fewer false positives (17) compared to false negatives (19) for the positive class.
+Confusion matrix indicates good performance with fewer false positives compared to false negatives for the positive class.
 
 ### Logistic Regression: Coefficients
+
+```{python}
+lg_coeff = pd.read_csv("../results/tables/logistic_regression/logreg_coefficients.csv")
+
+chest_pain_type_asymptomatic_coef = round(lg_coeff.loc[lg_coeff['Feature'] == 'onehotencoder__chest_pain_type_asymptomatic', 'Coefficient'].values[0], 2)
+num_of_vessels_0_coef = round(lg_coeff.loc[lg_coeff['Feature'] == 'onehotencoder__num_of_vessels_0.0', 'Coefficient'].values[0], 2)
+```
 
 ![Coefficients of Logistic Regression Model](../results/tables/logistic_regression/logreg_coefficients.png){#fig-coef-lg}
 
 The coefficients of the Logistic Regression model reflect the impact of each feature on the likelihood of a positive outcome, 
 with positive coefficients indicating an increased likelihood and negative coefficients indicating a decreased likelihood. 
-For example, features like `chest_pain_type_asymptomatic` (1.18), `thalassemia_reversable defect` (0.97), and `num_of_vessels_2.0` (0.91)
- are positively associated with the likelihood of heart disease, meaning that higher values of these features increase the chances of 
- a positive outcome. In contrast, features such as `num_of_vessels_0.0` (-1.26), `chest_pain_type_non-anginal pain` (-0.93), 
- and `thalassemia_normal` (-0.58) show a negative relationship, meaning they decrease the likelihood of heart disease. The coefficients for scaled features like `age`, `cholesterol`, and `resting_blood_pressure` (e.g., 0.34 for `cholesterol`) indicate their contribution to the prediction, with the magnitude of the coefficient reflecting the strength of their influence on the model's outcome. Features with larger absolute coefficient values, such as `num_of_vessels_0.0` and `chest_pain_type_asymptomatic`, have a more significant impact on the model’s prediction.
+For example, features like `chest_pain_type_asymptomatic` (`{python} chest_pain_type_asymptomatic_coef`) 
+are positively associated with the likelihood of heart disease, meaning that higher values of these features increase the chances of 
+a positive outcome (presence of hear disease). In contrast, features such as `num_of_vessels_0.0`% (`{python} num_of_vessels_0_coef`)
+show a negative relationship, meaning they decrease the likelihood of heart disease. 
 
 ### Logistic Regression: Test Results
 
@@ -89,12 +110,19 @@ For example, features like `chest_pain_type_asymptomatic` (1.18), `thalassemia_r
 #| 
 lg_precision_class_0 = round(lg_model_results.loc[lg_model_results[''] == '0', 'precision'].values[0] * 100, 2)
 lg_recall_class_0 = round(lg_model_results.loc[lg_model_results[''] == '0', 'recall'].values[0] * 100, 2)
+lg_f1_class_0 = round(lg_model_results.loc[lg_model_results[''] == '1', 'f1-score'].values[0] * 100, 2)
+
 lg_precision_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'precision'].values[0] * 100, 2)
 lg_recall_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'recall'].values[0] * 100, 2)
+lg_f1_class_1 = round(lg_model_results.loc[lg_model_results[''] == '1', 'f1-score'].values[0] * 100, 2)
+
+lg_accuracy_test = round(lg_model_results.loc[lg_model_results[''] == 'accuracy', 'precision'].values[0] * 100, 2)
+
 
 Markdown(lg_model_results.to_markdown(index = False))
 ```
 
-Test results show that Logistic Regression outperforms the Decision Tree in terms of overall accuracy (0.844). 
-For precision and recall, class 0 achieves precision of 0.827 and recall of 0.896, while class 1 has precision of 
-0.868 and recall of 0.786, leading to an F1-score of 0.86 for class 0 and 0.825 for class 1.
+Test results show that Logistic Regression outperforms the Decision Tree in terms of overall accuracy (`{python} lg_accuracy_test`%). 
+For precision and recall, class 0 achieves precision of `{python} lg_precision_class_0`% and recall of `{python} lg_recall_class_0`%, 
+while class 1 has precision of `{python} lg_precision_class_1`% and recall of `{python} lg_recall_class_1`%, 
+leading to an F1-score of `{python} lg_f1_class_0`% for class 0 and `{python} lg_f1_class_1`% for class 1.
