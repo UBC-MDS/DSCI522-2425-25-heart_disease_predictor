@@ -10,15 +10,17 @@ and demographic factors.
 #### Overall Accuracy of the Classification Models
 
 Both the logistic regression and decision tree models demonstrated strong predictive capabilities. 
-The decision tree model achieved an accuracy of 73.33%, with a precision of 72.22% and recall of 81.25% 
-for class 0 (absence of heart disease) and a precision of 75.0% and recall of 64.29% for class 1 (presence of heart disease). 
-However, the decision tree model exhibited signs of potential overfitting, as indicated by the 100% training accuracy versus 
-a test accuracy of 72.5%, suggesting that it might not generalize well to unseen data.
+The decision tree model achieved an accuracy of `{python} dt_accuracy_test`%, with a precision of `{python} dt_precision_class_0`% and recall of `{python} dt_recall_class_0`% 
+for class 0 (absence of heart disease) and a precision of `{python} dt_precision_class_1`% and recall of `{python} dt_recall_class_1`% for class 1 (presence of heart disease). 
+However, the decision tree model exhibited signs of potential overfitting, as indicated by the `{python} dt_train_accuracy_cv`% training accuracy versus 
+a test accuracy of `{python} dt_accuracy_test`%, suggesting that it might not generalize well to unseen data.
 
-In comparison, the logistic regression model outperformed the decision tree model, achieving an overall accuracy of 81.11%. 
-It exhibited balanced precision (78.18% for class 0 and 85.71% for class 1) and recall (89.58% for class 0 and 71.43% for class 1), 
-with a test accuracy of 87.5%, and a training accuracy of 89.6%. This higher performance suggests that logistic regression provides 
-a more reliable model for predicting heart disease, with fewer issues related to overfitting and better generalization to new data.
+In comparison, the logistic regression model outperformed the decision tree model, achieving an overall accuracy of `{python} lg_accuracy_test`%. 
+It exhibited balanced precision (`{python} lg_precision_class_0`% for class 0 and `{python} lg_precision_class_1`% for class 1) 
+and recall (`{python} lg_recall_class_0`% for class 0 and `{python} lg_recall_class_1`% for class 1), 
+with a test accuracy of `{python} lg_accuracy_test`%, and a training accuracy of `{python} lg_train_accuracy_cv`%. 
+This higher performance suggests that logistic regression provides a more reliable model for predicting heart disease, 
+with fewer issues related to overfitting and better generalization to new data.
 
 #### Key Predictive Features for Heart Disease
 
@@ -36,9 +38,9 @@ confirming their relevance in the prediction of heart disease.
 
 The ability to predict whether an individual might develop heart disease based on health indicators and demographic factors was 
 evaluated through both models. Logistic regression demonstrated a strong capability to predict the likelihood of heart disease, 
-with particularly high recall for the absence of heart disease (89.58%), meaning the model was effective in identifying healthy 
+with particularly high recall for the absence of heart disease (`{python} lg_recall_class_1`%), meaning the model was effective in identifying healthy 
 individuals. Conversely, the decision tree model showed a more balanced performance but struggled to consistently predict class 1 
-(heart disease), as reflected by its lower recall (64.29%) for this group.
+(heart disease), as reflected by its lower recall (`{python} dt_recall_class_1`%) for this group.
 
 Overall, the findings suggest that machine learning models, particularly logistic regression, hold promise for accurately 
 predicting heart disease diagnoses. However, there is still room for improvement in refining these models to reduce misclassifications, 
